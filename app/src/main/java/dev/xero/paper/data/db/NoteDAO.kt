@@ -3,6 +3,16 @@ package dev.xero.paper.data.db
 import androidx.room.*
 import dev.xero.paper.data.db.entities.Note
 
+/**
+ * [2023] Dev XERO - PAPER
+ *
+ * [NoteDAO] Note Data Access Object
+ *
+ * [getNotes] - Return a List of [Note]
+ * [getNote] - Return a particular [Note] by id, nullable
+ * [addNote] - Add a note
+ * [deleteNote] - Delete a note
+ * */
 @Dao
 interface NoteDAO {
 
