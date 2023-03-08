@@ -16,6 +16,7 @@
 package dev.xero.paper.data.db
 
 import androidx.room.Database
+import androidx.room.RoomDatabase
 import dev.xero.paper.data.db.entities.Note
 
 /**
@@ -30,7 +31,7 @@ import dev.xero.paper.data.db.entities.Note
 	entities = [Note::class],
 	version = 1
 )
-abstract class NoteDB {
+abstract class NoteDB : RoomDatabase() {
 	abstract val noteDAO: NoteDAO
 
 	companion object {
