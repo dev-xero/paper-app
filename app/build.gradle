@@ -70,6 +70,14 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling"
     debugImplementation "androidx.compose.ui:ui-test-manifest"
 
+    // Splash API
+    implementation "androidx.core:core-splashscreen:1.0.0"
+
+    // Navigation
+    def nav_version = "2.4.0"
+    implementation "androidx.navigation:navigation-compose:$nav_version"
+
+
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
 
