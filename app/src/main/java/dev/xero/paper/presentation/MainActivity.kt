@@ -1,4 +1,4 @@
-package dev.xero.paper
+package dev.xero.paper.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
