@@ -32,7 +32,7 @@ import dev.xero.paper.data.db.entities.Note
 interface NoteDAO {
 
 	@Query("SELECT * FROM notes")
-	fun getNotes(): List<Note>
+	suspend fun getNotes(): List<Note>
 
 	@Query("SELECT * FROM notes WHERE id =:id")
 	suspend fun getNote(id: Int): Note?
