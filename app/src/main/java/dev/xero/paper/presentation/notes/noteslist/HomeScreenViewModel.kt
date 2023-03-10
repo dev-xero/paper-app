@@ -20,10 +20,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.xero.paper.data.repository.NoteRepositoryImpl
 import dev.xero.paper.domain.model.NoteDBEntity
-import dev.xero.paper.domain.repository.NoteRepository
-import dev.xero.paper.domain.usecases.AddNoteUseCase
 import dev.xero.paper.domain.usecases.NoteUseCases
 import kotlinx.coroutines.launch
 import javax.inject.Inject
