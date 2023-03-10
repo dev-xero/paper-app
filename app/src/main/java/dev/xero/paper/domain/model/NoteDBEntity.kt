@@ -13,19 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.xero.paper.domain.repository
+package dev.xero.paper.domain.model
 
-import dev.xero.paper.domain.model.NoteDBEntity
-import kotlinx.coroutines.flow.Flow
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-interface NoteRepository {
-	fun getAllNotes()
-		: Flow<List<NoteDBEntity>>
-
-	suspend fun getNoteById(id: Long)
-		: NoteDBEntity?
-
-	suspend fun addNote(note: NoteDBEntity)
-
-	suspend fun deleteNote(note: NoteDBEntity)
-}
+@Entity(tableName = "notes")
+data class NoteDBEntity(
+	@PrimaryKey val id: Long = 0L,
+	val title: String,
+	val content: String
+)

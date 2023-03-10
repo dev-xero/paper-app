@@ -13,19 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.xero.paper.domain.repository
+package dev.xero.paper.data.datasource.db
 
+import androidx.room.Database
+import androidx.room.RoomDatabase
 import dev.xero.paper.domain.model.NoteDBEntity
-import kotlinx.coroutines.flow.Flow
 
-interface NoteRepository {
-	fun getAllNotes()
-		: Flow<List<NoteDBEntity>>
+@Database(
+	entities = [NoteDBEntity::class],
+	version = 1
+)
+abstract class NoteDB : RoomDatabase() {
+	abstract val noteDAO: NoteDAO
 
-	suspend fun getNoteById(id: Long)
-		: NoteDBEntity?
-
-	suspend fun addNote(note: NoteDBEntity)
-
-	suspend fun deleteNote(note: NoteDBEntity)
+	companion object {
+		val DATABASE_NAME = "notes_db"
+	}
 }

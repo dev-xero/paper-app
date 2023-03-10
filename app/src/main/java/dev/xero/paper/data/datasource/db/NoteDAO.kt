@@ -13,19 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.xero.paper.domain.repository
 
+package dev.xero.paper.data.datasource.db
+
+import androidx.room.*
 import dev.xero.paper.domain.model.NoteDBEntity
 import kotlinx.coroutines.flow.Flow
 
-interface NoteRepository {
-	fun getAllNotes()
-		: Flow<List<NoteDBEntity>>
+@Dao
+interface NoteDAO {
+	@Query("SELECT * FROM notes")
+	fun getAllNotes(): Flow<List<NoteDBEntity>>
 
-	suspend fun getNoteById(id: Long)
-		: NoteDBEntity?
+	@Query("SELECT * FROM notes WHERE id = :id")
+	suspend fun getNoteById(id: Long): NoteDBEntity?
 
+	@Insert(onConflict = OnConflictStrategy.REPLACE)
 	suspend fun addNote(note: NoteDBEntity)
 
+	@Delete
 	suspend fun deleteNote(note: NoteDBEntity)
 }

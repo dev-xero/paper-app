@@ -13,34 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.xero.paper
+package dev.xero.paper.presentation.notes.noteslist
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.ViewModel
-import dagger.hilt.android.AndroidEntryPoint
-import dev.xero.paper.presentation.notes.noteslist.HomeScreen
-import dev.xero.paper.presentation.notes.noteslist.HomeScreenViewModel
-import dev.xero.paper.presentation.ui.theme.PaperTheme
+import dev.xero.paper.domain.model.NoteDBEntity
+import kotlinx.coroutines.delay
 
-@AndroidEntryPoint
-class MainActivity : ComponentActivity() {
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		setContent {
-			PaperTheme {
-				val viewModel = hiltViewModel<HomeScreenViewModel>()
-				HomeScreen(viewModel = viewModel)
-			}
+@Composable
+fun HomeScreen(
+	modifier: Modifier = Modifier,
+	viewModel: HomeScreenViewModel = hiltViewModel()
+) {
+	val notes = viewModel.notes.observeAsState(initial = emptyList())
+
+	LazyColumn(
+		modifier = modifier.fillMaxSize()
+	) {
+		items(notes.value, key = { note -> note.id }) { note ->
+			Text(text = note.title)
 		}
 	}
 }

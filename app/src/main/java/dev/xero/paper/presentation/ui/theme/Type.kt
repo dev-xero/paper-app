@@ -1,4 +1,4 @@
-package dev.xero.paper.ui.theme
+package dev.xero.paper.presentation.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

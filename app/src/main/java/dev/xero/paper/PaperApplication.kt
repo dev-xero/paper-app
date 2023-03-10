@@ -13,19 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.xero.paper.domain.repository
+package dev.xero.paper
 
-import dev.xero.paper.domain.model.NoteDBEntity
-import kotlinx.coroutines.flow.Flow
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-interface NoteRepository {
-	fun getAllNotes()
-		: Flow<List<NoteDBEntity>>
-
-	suspend fun getNoteById(id: Long)
-		: NoteDBEntity?
-
-	suspend fun addNote(note: NoteDBEntity)
-
-	suspend fun deleteNote(note: NoteDBEntity)
-}
+@HiltAndroidApp
+class PaperApplication : Application()

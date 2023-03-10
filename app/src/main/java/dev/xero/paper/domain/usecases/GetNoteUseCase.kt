@@ -13,19 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.xero.paper.domain.repository
+package dev.xero.paper.domain.usecases
 
 import dev.xero.paper.domain.model.NoteDBEntity
-import kotlinx.coroutines.flow.Flow
+import dev.xero.paper.domain.repository.NoteRepository
 
-interface NoteRepository {
-	fun getAllNotes()
-		: Flow<List<NoteDBEntity>>
+class GetNoteUseCase(
+	private val repository: NoteRepository
+) {
 
-	suspend fun getNoteById(id: Long)
-		: NoteDBEntity?
-
-	suspend fun addNote(note: NoteDBEntity)
-
-	suspend fun deleteNote(note: NoteDBEntity)
+	suspend operator fun invoke(id: Long): NoteDBEntity? {
+		return repository.getNoteById(id)
+	}
 }

@@ -1,11 +1,11 @@
 /*
- * Copyright (C) 2023 Dev Xero
+ * Copyright (C) 2023 - Xero
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,9 +21,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.xero.paper.data.db.NoteDB
+import dev.xero.paper.data.datasource.db.NoteDB
 import dev.xero.paper.data.repository.NoteRepositoryImpl
 import dev.xero.paper.domain.repository.NoteRepository
+import dev.xero.paper.domain.usecases.*
 import javax.inject.Singleton
 
 @Module
@@ -34,7 +35,7 @@ object AppModule {
 	@Singleton
 	fun providesNoteDatabase(app: Application): NoteDB {
 		return Room.databaseBuilder(
-			app,
+			app.applicationContext,
 			NoteDB::class.java,
 			NoteDB.DATABASE_NAME
 		).build()
@@ -43,6 +44,18 @@ object AppModule {
 	@Provides
 	@Singleton
 	fun providesNoteRepository(db: NoteDB): NoteRepository {
-		return NoteRepositoryImpl(db.noteDAO)
+		return NoteRepositoryImpl(dao = db.noteDAO)
 	}
+
+	@Provides
+	@Singleton
+	fun providesNoteUseCases(repository: NoteRepository): NoteUseCases {
+		return NoteUseCases(
+			getNotesUseCase = GetNotesUseCase(repository),
+			getNoteUseCase = GetNoteUseCase(repository),
+			addNoteUseCase = AddNoteUseCase(repository),
+			deleteNoteUseCase = DeleteNoteUseCase(repository)
+		)
+	}
+
 }
