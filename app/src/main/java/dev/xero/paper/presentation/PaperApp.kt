@@ -13,28 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.xero.paper.data.db
+package dev.xero.paper.presentation
 
-import androidx.room.Database
-import androidx.room.RoomDatabase
-import dev.xero.paper.data.db.entities.Note
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-/**
- * [2023] Dev XERO - PAPER
- *
- * [NoteDB] Note Room Database
- *
- * [noteDAO] Note Data Access Object
- * [DATABASE_NAME] Database Name
- * */
-@Database(
-	entities = [Note::class],
-	version = 1
-)
-abstract class NoteDB : RoomDatabase() {
-	abstract val noteDAO: NoteDAO
-
-	companion object {
-		const val DATABASE_NAME = "notes_db"
-	}
-}
+@HiltAndroidApp
+class PaperApp : Application()
