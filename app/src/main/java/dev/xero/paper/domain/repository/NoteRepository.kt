@@ -23,7 +23,7 @@ import dev.xero.paper.data.db.entities.Note
  * */
 interface NoteRepository {
 	suspend fun getNotes(): List<Note>
-	suspend fun getNote(): Note
+	suspend fun getNote(id: Int): Note?
 	suspend fun addNote(note: Note)
 	suspend fun deleteNote(note: Note)
 }

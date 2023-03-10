@@ -22,6 +22,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.xero.paper.data.db.NoteDB
+import dev.xero.paper.data.repository.NoteRepositoryImpl
+import dev.xero.paper.domain.repository.NoteRepository
 import javax.inject.Singleton
 
 @Module
@@ -36,5 +38,11 @@ object AppModule {
 			NoteDB::class.java,
 			NoteDB.DATABASE_NAME
 		).build()
+	}
+
+	@Provides
+	@Singleton
+	fun providesNoteRepository(db: NoteDB): NoteRepository {
+		return NoteRepositoryImpl(db.noteDAO)
 	}
 }

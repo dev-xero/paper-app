@@ -15,23 +15,25 @@
  */
 package dev.xero.paper.data.repository
 
+import dev.xero.paper.data.db.NoteDAO
 import dev.xero.paper.data.db.entities.Note
 import dev.xero.paper.domain.repository.NoteRepository
 
-class NoteRepositoryImpl : NoteRepository {
+
+class NoteRepositoryImpl(private val dao: NoteDAO) : NoteRepository {
 	override suspend fun getNotes(): List<Note> {
-		TODO("Not yet implemented")
+		return dao.getNotes()
 	}
 
-	override suspend fun getNote(): Note {
-		TODO("Not yet implemented")
+	override suspend fun getNote(id: Int): Note? {
+		return dao.getNote(id)
 	}
 
 	override suspend fun addNote(note: Note) {
-		TODO("Not yet implemented")
+		return dao.addNote(note)
 	}
 
 	override suspend fun deleteNote(note: Note) {
-		TODO("Not yet implemented")
+		return dao.deleteNote(note)
 	}
 }
