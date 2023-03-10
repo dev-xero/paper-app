@@ -1,6 +1,22 @@
-<inset xmlns:android="http://schemas.android.com/apk/res/android"
-    android:drawable="@drawable/app_icon_light"
-    android:insetLeft="48dp"
-    android:insetRight="48dp"
-    android:insetTop="48dp"
-    android:insetBottom="48dp"/>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="240dp"
+    android:viewportWidth="240"
+    android:viewportHeight="240">
+  <group>
+    <clip-path
+        android:pathData="M66,63h108v108h-108z"/>
+    <path
+        android:pathData="M162.81,103.71L133.29,74.19L141.81,65.67C145.37,62.11 151.14,62.11 154.7,65.67L171.33,82.3C174.89,85.86 174.89,91.63 171.33,95.19L162.81,103.71Z"
+        android:fillColor="#EBF7EE"/>
+    <path
+        android:pathData="M93.57,171L69.85,170.13C68.23,170.07 66.93,168.77 66.87,167.15L66,143.43C65.96,142.23 66.42,141.07 67.26,140.22L131.21,76.27L160.73,105.79L96.78,169.74C95.94,170.58 94.77,171.04 93.57,171Z"
+        android:fillColor="#EBF7EE"/>
+    <path
+        android:pathData="M68.73,169.42H124.36"
+        android:strokeWidth="3"
+        android:fillColor="#00000000"
+        android:strokeColor="#EBF7EE"
+        android:strokeLineCap="round"/>
+  </group>
+</vector>
