@@ -21,7 +21,8 @@ import dev.xero.paper.domain.model.NoteDBEntity
 
 @Database(
 	entities = [NoteDBEntity::class],
-	version = 1
+	version = 1,
+	exportSchema = false
 )
 abstract class NoteDB : RoomDatabase() {
 	abstract val noteDAO: NoteDAO
