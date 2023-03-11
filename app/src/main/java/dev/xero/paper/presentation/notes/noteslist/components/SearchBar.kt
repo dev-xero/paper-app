@@ -17,10 +17,7 @@ package dev.xero.paper.presentation.notes.noteslist.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
@@ -51,7 +48,10 @@ fun SearchBar(
 		"background" to if (deviceThemeDark) SurfaceDark else Secondary
 	)
 
-	Row(modifier = modifier.fillMaxWidth()) {
+	Row(
+		modifier = modifier
+			.fillMaxWidth()
+	) {
 		OutlinedTextField(
 			value = searchContent,
 			onValueChange = onSearchContentChange,
@@ -71,7 +71,7 @@ fun SearchBar(
 				backgroundColor = colorMapping["background"]!!,
 				cursorColor = Primary
 			),
-			shape = RoundedCornerShape(2.dp),
+			shape = RoundedCornerShape(0.dp),
 			modifier = Modifier.fillMaxWidth()
 		)
 	}
