@@ -61,7 +61,12 @@ fun HomeScreen(
 				onClick = { /*TODO*/ },
 				shape = RoundedCornerShape(4.dp),
 				backgroundColor = Primary,
-				elevation = FloatingActionButtonDefaults.elevation(0.dp),
+				elevation = FloatingActionButtonDefaults.elevation(
+					defaultElevation = 0.dp,
+					pressedElevation = 0.dp,
+					focusedElevation = 0.dp,
+					hoveredElevation = 0.dp
+				),
 				modifier = Modifier.padding(12.dp)
 			) {
 				AddNoteButton(isDarkTheme = isDarkTheme)
