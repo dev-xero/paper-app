@@ -38,7 +38,7 @@ fun EmptyNoteListDisplay(
 ) {
 	Column(
 		modifier = modifier.fillMaxSize(),
-		verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
+		verticalArrangement = Arrangement.spacedBy(24.dp, Alignment.CenterVertically),
 		horizontalAlignment = Alignment.CenterHorizontally
 	) {
 		val documentIconRes = when(isDarkTheme) {
