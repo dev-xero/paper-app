@@ -70,6 +70,12 @@ val Typography = Typography(
 	),
 
 	body1 = TextStyle(
+		fontFamily = CoreSans,
+		fontWeight = FontWeight.Normal,
+		fontSize = 16.sp
+	),
+
+	body2 = TextStyle(
 		fontFamily = OutFit,
 		fontWeight = FontWeight.Normal,
 		fontSize = 16.sp
