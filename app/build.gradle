@@ -78,6 +78,8 @@ dependencies {
     def nav_version = "2.5.3"
     implementation "androidx.navigation:navigation-compose:$nav_version"
 
+    // Accompanist - Status Bar
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.27.0"
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0"
