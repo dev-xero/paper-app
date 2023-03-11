@@ -1,4 +1,4 @@
-![Banner](https://user-images.githubusercontent.com/70282966/223798937-e3b21745-814e-42b9-af0b-5f9da149d5dc.svg)
+![Banner](https://user-images.githubusercontent.com/70282966/224508931-89716813-b737-4093-853c-c97bb8ef8c1a.svg)
 
 ## Paper
 Paper — Note management done right.   
