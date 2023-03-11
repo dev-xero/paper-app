@@ -20,6 +20,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.FloatingActionButtonDefaults
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -27,9 +30,11 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import dev.xero.paper.presentation.notes.noteslist.components.AddNoteButton
 import dev.xero.paper.presentation.notes.noteslist.components.EmptyNoteListDisplay
 import dev.xero.paper.presentation.notes.noteslist.components.HomeDisplay
 import dev.xero.paper.presentation.notes.noteslist.components.SearchBar
+import dev.xero.paper.presentation.ui.theme.Primary
 
 @Composable
 fun HomeScreen(
@@ -49,6 +54,18 @@ fun HomeScreen(
 				onSearchContentChange = { searchContentFake = it },
 				deviceThemeDark = isDarkTheme,
 			)
+		},
+	
+		floatingActionButton = {
+			FloatingActionButton(
+				onClick = { /*TODO*/ },
+				shape = RoundedCornerShape(4.dp),
+				backgroundColor = Primary,
+				elevation = FloatingActionButtonDefaults.elevation(0.dp),
+				modifier = Modifier.padding(12.dp)
+			) {
+				AddNoteButton(isDarkTheme = isDarkTheme)
+			}
 		}
 	)
 	{ padding ->
@@ -59,10 +76,12 @@ fun HomeScreen(
 		) {
 			item {
 				HomeDisplay(isDarkTheme = isDarkTheme)
-				EmptyNoteListDisplay(
-					isDarkTheme = isDarkTheme,
-					modifier = Modifier.padding(top = 124.dp)
-				)
+				if (notes.value.isEmpty()) {
+					EmptyNoteListDisplay(
+						isDarkTheme = isDarkTheme,
+						modifier = Modifier.padding(top = 124.dp)
+					)
+				}
 			}
 
 			items(notes.value, key = { note -> note.id }) { note ->
