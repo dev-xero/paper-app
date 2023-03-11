@@ -15,14 +15,19 @@
  */
 package dev.xero.paper.presentation.notes.noteslist
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import dev.xero.paper.presentation.notes.noteslist.components.SearchBar
 
 @Composable
 fun HomeScreen(
@@ -30,12 +35,27 @@ fun HomeScreen(
 	viewModel: HomeScreenViewModel = hiltViewModel()
 ) {
 	val notes = viewModel.notes.observeAsState(initial = emptyList())
+	val isDarkTheme = isSystemInDarkTheme()
 
-	LazyColumn(
-		modifier = modifier.fillMaxSize()
-	) {
-		items(notes.value, key = { note -> note.id }) { note ->
-			Text(text = note.title)
+	/*TODO: FAKE DATA, REPLACE LATER */
+	var searchContentFake = ""
+
+	Scaffold(
+		topBar = {
+			SearchBar(
+				searchContent = searchContentFake,
+				onSearchContentChange = { searchContentFake = it },
+				deviceThemeDark = isDarkTheme,
+			)
+		}
+	)
+	{ padding ->
+		LazyColumn(
+			modifier = modifier.padding(8.dp)
+		) {
+			items(notes.value, key = { note -> note.id }) { note ->
+				Text(text = note.title)
+			}
 		}
 	}
 }
