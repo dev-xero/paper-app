@@ -27,6 +27,8 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import dev.xero.paper.presentation.notes.noteslist.components.EmptyNoteListDisplay
+import dev.xero.paper.presentation.notes.noteslist.components.HomeDisplay
 import dev.xero.paper.presentation.notes.noteslist.components.SearchBar
 
 @Composable
@@ -51,11 +53,22 @@ fun HomeScreen(
 	)
 	{ padding ->
 		LazyColumn(
-			modifier = modifier.padding(8.dp)
+			modifier = modifier
+				.padding(12.dp)
+				.fillMaxSize()
 		) {
+			item {
+				HomeDisplay(isDarkTheme = isDarkTheme)
+				EmptyNoteListDisplay(
+					isDarkTheme = isDarkTheme,
+					modifier = Modifier.padding(top = 124.dp)
+				)
+			}
+
 			items(notes.value, key = { note -> note.id }) { note ->
 				Text(text = note.title)
 			}
 		}
+
 	}
 }
