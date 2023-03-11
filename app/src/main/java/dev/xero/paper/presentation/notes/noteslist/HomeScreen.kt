@@ -76,10 +76,12 @@ fun HomeScreen(
 		) {
 			item {
 				HomeDisplay(isDarkTheme = isDarkTheme)
-				EmptyNoteListDisplay(
-					isDarkTheme = isDarkTheme,
-					modifier = Modifier.padding(top = 124.dp)
-				)
+				if (notes.value.isEmpty()) {
+					EmptyNoteListDisplay(
+						isDarkTheme = isDarkTheme,
+						modifier = Modifier.padding(top = 124.dp)
+					)
+				}
 			}
 
 			items(notes.value, key = { note -> note.id }) { note ->
