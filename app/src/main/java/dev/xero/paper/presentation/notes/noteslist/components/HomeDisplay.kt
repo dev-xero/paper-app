@@ -41,8 +41,8 @@ fun HomeDisplay(
 		),
 		style = MaterialTheme.typography.h3,
 		color = when(isDarkTheme) {
-			true -> Black
-			else -> OnSurface
+			true -> OnSurface
+			else -> Black
 		}
 	)
 	Text(

@@ -19,11 +19,17 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import dev.xero.paper.R
+import dev.xero.paper.presentation.ui.theme.Grey100
+import dev.xero.paper.presentation.ui.theme.Grey300
 
 @Composable
 fun EmptyNoteListDisplay(
@@ -32,7 +38,7 @@ fun EmptyNoteListDisplay(
 ) {
 	Column(
 		modifier = modifier.fillMaxSize(),
-		verticalArrangement = Arrangement.Center,
+		verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
 		horizontalAlignment = Alignment.CenterHorizontally
 	) {
 		val documentIconRes = when(isDarkTheme) {
@@ -42,7 +48,17 @@ fun EmptyNoteListDisplay(
 
 		Image(
 			painter = painterResource(id = documentIconRes),
-			contentDescription = "no notes found"
+			contentDescription = "no notes found",
+			modifier = Modifier.align(Alignment.CenterHorizontally)
+		)
+		
+		Text(
+			text = stringResource(id = R.string.note_tip),
+			style = MaterialTheme.typography.subtitle2,
+			color = when(isDarkTheme) {
+				true -> Grey100
+				else -> Grey300
+			}
 		)
 	}
 }

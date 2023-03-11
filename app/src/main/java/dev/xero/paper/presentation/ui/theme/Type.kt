@@ -86,7 +86,7 @@ val Typography = Typography(
 
 	subtitle2 = TextStyle(
 		fontFamily = CoreSans,
-		fontWeight = FontWeight.Bold,
+		fontWeight = FontWeight.Normal,
 		fontSize = 14.sp
 	),
 
