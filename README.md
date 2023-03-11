@@ -8,4 +8,5 @@ Manage all your important notes with ease
 - [x] Light and Dark Theme
 - [x] Create and Edit Notes
 - [x] Delete Notes
+- [X] Save Notes for Later
 - [x] Minimal and Aesthetic UI
