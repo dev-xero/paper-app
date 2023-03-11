@@ -17,7 +17,7 @@ package dev.xero.paper.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Primary = Color(0xFF5DE07A)
+val Primary = Color(0xFF3DDC84)
 val OnSurface = Color(0xFFEBF7EE)
 val Secondary = Color(0xFFCAF0D2)
 val Grey100 = Color(0xFF8A978D)
