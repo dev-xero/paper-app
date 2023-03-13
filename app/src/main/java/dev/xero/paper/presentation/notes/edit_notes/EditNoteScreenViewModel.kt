@@ -19,9 +19,13 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.xero.paper.domain.usecases.NoteUseCases
+import javax.inject.Inject
 
 @HiltViewModel
-class EditNoteScreenViewModel : ViewModel() {
+class EditNoteScreenViewModel @Inject constructor (
+	val useCases: NoteUseCases
+) : ViewModel() {
 	var title: MutableState<String> = mutableStateOf("")
 	var content: MutableState<String> = mutableStateOf("")
 }

@@ -17,15 +17,14 @@ package dev.xero.paper.presentation.notes.edit_notes
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.xero.paper.presentation.notes.edit_notes.edit_note_components.BackButton
+import dev.xero.paper.presentation.notes.edit_notes.edit_note_components.InputBox
+import dev.xero.paper.presentation.notes.edit_notes.utils.InputType
 import dev.xero.paper.presentation.ui.theme.OnSurface
 import dev.xero.paper.presentation.ui.theme.SurfaceDark
 
@@ -35,6 +34,8 @@ fun EditNoteScreen(
 	onBackButtonClicked: () -> Unit
 ) {
 	val isDarkTheme = isSystemInDarkTheme()
+	/*TODO: REPLACE FAKE DATA LATER*/
+	var valueFake = ""
 
 	Scaffold(
 		topBar = {
@@ -42,7 +43,7 @@ fun EditNoteScreen(
 				modifier = modifier
 					.fillMaxWidth()
 					.background(
-						when(isDarkTheme) {
+						when (isDarkTheme) {
 							true -> SurfaceDark
 							else -> OnSurface
 						}
@@ -60,9 +61,15 @@ fun EditNoteScreen(
 		}
 	) {padding ->
 		Column(
-			modifier = Modifier.padding(8.dp)
+			modifier = Modifier.padding(horizontal = 12.dp),
+			verticalArrangement = Arrangement.spacedBy(8.dp)
 		) {
-
+			InputBox(
+				inputType = InputType.Title,
+				isDarkTheme = isDarkTheme,
+				value = valueFake,
+				onValueChange = { }
+			)
 		}
 	}
 }

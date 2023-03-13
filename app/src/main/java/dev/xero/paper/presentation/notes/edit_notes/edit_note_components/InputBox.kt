@@ -15,13 +15,16 @@
  */
 package dev.xero.paper.presentation.notes.edit_notes.edit_note_components
 
+import android.renderscript.ScriptGroup.Input
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import dev.xero.paper.presentation.notes.edit_notes.utils.NoteInputType
+import dev.xero.paper.presentation.notes.edit_notes.utils.InputType
 import dev.xero.paper.presentation.ui.theme.BgDark
 import dev.xero.paper.presentation.ui.theme.Grey100
 import dev.xero.paper.presentation.ui.theme.Grey500
@@ -30,7 +33,7 @@ import dev.xero.paper.presentation.ui.theme.OnSurface
 @Composable
 fun InputBox(
 	modifier: Modifier = Modifier,
-	inputType: NoteInputType,
+	inputType: InputType,
 	isDarkTheme: Boolean,
 	value: String,
 	onValueChange: (String) -> Unit
@@ -54,13 +57,19 @@ fun InputBox(
 		value = value,
 		onValueChange = onValueChange,
 		modifier = modifier.fillMaxWidth(),
-		singleLine = inputType is NoteInputType.Title,
+		singleLine = inputType == InputType.Title,
+		placeholder = {
+			Text(
+				text = "Title",
+				style = if (inputType == InputType.Title) MaterialTheme.typography.h4 else MaterialTheme.typography.h4
+			)
+		},
 		colors = TextFieldDefaults.outlinedTextFieldColors(
 			backgroundColor = colorMap["main"]!!,
 			focusedBorderColor = colorMap["main"]!!,
 			unfocusedBorderColor = colorMap["main"]!!,
 			placeholderColor = when(inputType) {
-				is NoteInputType.Title -> colorMap["placeholder_title"]!!
+				InputType.Title -> colorMap["placeholder_title"]!!
 				else -> colorMap["placeholder_content"]!!
 			}
 		)
