@@ -16,12 +16,17 @@
 package dev.xero.paper.presentation.notes.edit_notes.edit_note_components
 
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import dev.xero.paper.presentation.notes.edit_notes.utils.InputType
 import dev.xero.paper.presentation.ui.theme.*
@@ -32,7 +37,10 @@ fun InputBox(
 	inputType: InputType,
 	isDarkTheme: Boolean,
 	value: String,
-	onValueChange: (String) -> Unit
+	onValueChange: (String) -> Unit,
+	keyboardActions: KeyboardActions,
+	keyboardOptions: KeyboardOptions,
+	focusRequester: FocusRequester? = null
 ) {
 	val colorMap: Map<String, Color> = mapOf(
 		"main" to when(isDarkTheme) {
@@ -52,7 +60,14 @@ fun InputBox(
 	OutlinedTextField(
 		value = value,
 		onValueChange = onValueChange,
-		modifier = modifier.fillMaxWidth(),
+		modifier = when(inputType) {
+			InputType.Title -> {
+				modifier
+					.fillMaxWidth()
+					.focusRequester(focusRequester!!)
+			}
+			else -> modifier.fillMaxWidth()
+	  },
 		singleLine = inputType == InputType.Title,
 		textStyle = if (inputType == InputType.Title) {
 			MaterialTheme.typography.h3
@@ -86,6 +101,14 @@ fun InputBox(
 					if (isDarkTheme) Grey100 else Grey300
 				}
 			}
-		)
+		),
+		keyboardActions = keyboardActions,
+		keyboardOptions = keyboardOptions
 	)
+
+	if (inputType == InputType.Title) {
+		LaunchedEffect(Unit) {
+			focusRequester!!.requestFocus()
+		}
+	}
 }
