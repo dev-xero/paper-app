@@ -26,6 +26,7 @@ import dev.xero.paper.presentation.notes.edit_notes.edit_note_components.BackBut
 import dev.xero.paper.presentation.notes.edit_notes.edit_note_components.InputBox
 import dev.xero.paper.presentation.notes.edit_notes.utils.InputType
 import dev.xero.paper.presentation.ui.theme.OnSurface
+import dev.xero.paper.presentation.ui.theme.Secondary
 import dev.xero.paper.presentation.ui.theme.SurfaceDark
 
 @Composable
@@ -45,7 +46,7 @@ fun EditNoteScreen(
 					.background(
 						when (isDarkTheme) {
 							true -> SurfaceDark
-							else -> OnSurface
+							else -> Secondary
 						}
 					)
 			) {
