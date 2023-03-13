@@ -31,7 +31,8 @@ import dev.xero.paper.presentation.ui.theme.SurfaceDark
 
 @Composable
 fun EditNoteScreen(
-	modifier: Modifier = Modifier
+	modifier: Modifier = Modifier,
+	onBackButtonClicked: () -> Unit
 ) {
 	val isDarkTheme = isSystemInDarkTheme()
 
@@ -53,7 +54,7 @@ fun EditNoteScreen(
 						horizontal = 12.dp,
 						vertical = 8.dp
 					),
-					onButtonClick = {/*TODO: NAVIGATE TO HOME SCREEN*/}
+					onButtonClick = onBackButtonClicked
 				)
 			}
 		}

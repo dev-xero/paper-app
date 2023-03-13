@@ -52,7 +52,9 @@ class MainActivity : ComponentActivity() {
 
 					// ROUTE: Edit Note
 					composable(route = NavGraph.Screens.EditNote.name) {
-						EditNoteScreen()
+						EditNoteScreen(
+							onBackButtonClicked = { navController.navigate(NavGraph.Screens.Home.name) }
+						)
 					}
 				}
 			}
