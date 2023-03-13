@@ -60,7 +60,7 @@ fun InputBox(
 		singleLine = inputType == InputType.Title,
 		placeholder = {
 			Text(
-				text = "Title",
+				text = if (inputType == InputType.Title) "Title" else "content",
 				style = if (inputType == InputType.Title) MaterialTheme.typography.h4 else MaterialTheme.typography.h4
 			)
 		},

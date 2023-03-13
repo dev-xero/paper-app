@@ -70,6 +70,13 @@ fun EditNoteScreen(
 				value = valueFake,
 				onValueChange = { }
 			)
+
+			InputBox(
+				inputType = InputType.Content,
+				isDarkTheme = isDarkTheme,
+				value = valueFake,
+				onValueChange = { }
+			)
 		}
 	}
 }
