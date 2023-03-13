@@ -19,8 +19,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.xero.paper.domain.model.NoteDBEntity
 import dev.xero.paper.domain.usecases.NoteUseCases
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -32,10 +35,26 @@ class EditNoteScreenViewModel @Inject constructor (
 
 	fun updateTitle(value: String) {
 		title = value
+		val newNote = NoteDBEntity(
+			title = title,
+			content = content
+		)
+		addNote(newNote)
 	}
 
 	fun updateContent(value: String) {
 		content = value
+		val newNote = NoteDBEntity(
+			title = title,
+			content = content
+		)
+		addNote(newNote)
+	}
+
+	fun addNote(note: NoteDBEntity) {
+		viewModelScope.launch {
+			useCases.addNoteUseCase(note)
+		}
 	}
 
 }
