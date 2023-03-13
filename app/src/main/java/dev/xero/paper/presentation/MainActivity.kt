@@ -41,28 +41,7 @@ class MainActivity : ComponentActivity() {
 			PaperTheme {
 				// SETUP NAVIGATION
 				val navController: NavHostController = rememberNavController()
-				NavHost(
-					navController = navController,
-					startDestination = NavGraph.Screens.Home.name
-				) {
-					// ROUTE: Home
-					composable(route = NavGraph.Screens.Home.name) {
-						val viewModel = hiltViewModel<HomeScreenViewModel>()
-						HomeScreen(
-							viewModel = viewModel,
-							onAddNoteButtonClicked = { navController.navigate(NavGraph.Screens.EditNote.name) }
-						)
-					}
 
-					// ROUTE: Edit Note
-					composable(route = NavGraph.Screens.EditNote.name) {
-						val viewModel = hiltViewModel<EditNoteScreenViewModel>()
-						EditNoteScreen(
-							viewModel = viewModel,
-							onBackButtonClicked = { navController.navigate(NavGraph.Screens.Home.name) }
-						)
-					}
-				}
 			}
 		}
 	}
