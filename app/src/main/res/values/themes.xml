@@ -19,5 +19,6 @@
     <style name="Theme.Paper" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@color/status_bar</item>
         <item name="android:navigationBarColor">#FFEBF7EE</item>
+        <item name="android:windowBackground">#FFEBF7EE</item>
     </style>
 </resources>
