@@ -28,7 +28,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EditNoteScreenViewModel @Inject constructor (
-	val useCases: NoteUseCases
+	private val useCases: NoteUseCases
 ) : ViewModel() {
 	var title: String by mutableStateOf("")
 	var content: String by mutableStateOf("")
@@ -39,21 +39,19 @@ class EditNoteScreenViewModel @Inject constructor (
 			title = title,
 			content = content
 		)
-		addNote(newNote)
 	}
 
 	fun updateContent(value: String) {
 		content = value
+	}
+
+	fun addNote() {
 		val newNote = NoteDBEntity(
 			title = title,
 			content = content
 		)
-		addNote(newNote)
-	}
-
-	fun addNote(note: NoteDBEntity) {
 		viewModelScope.launch {
-			useCases.addNoteUseCase(note)
+			useCases.addNoteUseCase(newNote)
 		}
 	}
 

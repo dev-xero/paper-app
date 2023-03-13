@@ -18,7 +18,9 @@ package dev.xero.paper.presentation.notes.edit_notes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -58,6 +60,11 @@ fun EditNoteScreen(
 					),
 					onButtonClick = onBackButtonClicked
 				)
+			}
+		},
+		floatingActionButton = {
+			FloatingActionButton(onClick = {viewModel.addNote()}) {
+				Text(text = "Save Note")
 			}
 		}
 	) {padding ->
