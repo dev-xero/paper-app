@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.xero.paper
+package dev.xero.paper.app
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
