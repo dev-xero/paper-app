@@ -79,7 +79,7 @@ dependencies {
     implementation "androidx.navigation:navigation-compose:$nav_version"
 
     // Accompanist - Status Bar
-    implementation "com.google.accompanist:accompanist-systemuicontroller:0.27.0"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.28.0"
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0"
