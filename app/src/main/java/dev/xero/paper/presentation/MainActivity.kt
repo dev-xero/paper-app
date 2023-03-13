@@ -19,17 +19,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import dev.xero.paper.navigation.NavGraph
-import dev.xero.paper.presentation.notes.edit_notes.EditNoteScreen
-import dev.xero.paper.presentation.notes.edit_notes.EditNoteScreenViewModel
-import dev.xero.paper.presentation.notes.notes_list.HomeScreen
-import dev.xero.paper.presentation.notes.notes_list.HomeScreenViewModel
+import dev.xero.paper.navigation.SetupNavGraph
 import dev.xero.paper.presentation.ui.theme.PaperTheme
 
 @AndroidEntryPoint
@@ -41,7 +34,7 @@ class MainActivity : ComponentActivity() {
 			PaperTheme {
 				// SETUP NAVIGATION
 				val navController: NavHostController = rememberNavController()
-
+				SetupNavGraph(navHostController = navController)
 			}
 		}
 	}
