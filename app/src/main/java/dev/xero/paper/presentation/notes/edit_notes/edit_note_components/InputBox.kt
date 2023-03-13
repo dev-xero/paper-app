@@ -57,10 +57,11 @@ fun InputBox(
 		onValueChange = onValueChange,
 		modifier = modifier.fillMaxWidth(),
 		singleLine = inputType == InputType.Title,
+		textStyle = if (inputType == InputType.Title) MaterialTheme.typography.h4 else MaterialTheme.typography.body2,
 		placeholder = {
 			Text(
 				text = if (inputType == InputType.Title) "Title" else "content",
-				style = if (inputType == InputType.Title) MaterialTheme.typography.h4 else MaterialTheme.typography.h4
+				style = if (inputType == InputType.Title) MaterialTheme.typography.h4 else MaterialTheme.typography.body2
 			)
 		},
 		colors = TextFieldDefaults.outlinedTextFieldColors(

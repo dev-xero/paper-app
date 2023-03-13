@@ -62,8 +62,8 @@ fun EditNoteScreen(
 		}
 	) {padding ->
 		Column(
-			modifier = Modifier.padding(horizontal = 12.dp),
-			verticalArrangement = Arrangement.spacedBy(8.dp)
+			modifier = Modifier.padding(horizontal = 8.dp),
+			verticalArrangement = Arrangement.spacedBy(4.dp)
 		) {
 			InputBox(
 				inputType = InputType.Title,
