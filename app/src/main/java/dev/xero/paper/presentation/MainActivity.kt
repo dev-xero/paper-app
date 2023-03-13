@@ -21,6 +21,7 @@ import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.hilt.navigation.compose.hiltViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import dev.xero.paper.presentation.notes.edit_notes.EditNoteScreen
 import dev.xero.paper.presentation.notes.noteslist.HomeScreen
 import dev.xero.paper.presentation.notes.noteslist.HomeScreenViewModel
 import dev.xero.paper.presentation.ui.theme.PaperTheme
@@ -32,8 +33,9 @@ class MainActivity : ComponentActivity() {
 		installSplashScreen()
 		setContent {
 			PaperTheme {
-				val viewModel = hiltViewModel<HomeScreenViewModel>()
-				HomeScreen(viewModel = viewModel)
+//				val viewModel = hiltViewModel<HomeScreenViewModel>()
+//				HomeScreen(viewModel = viewModel)
+				EditNoteScreen()
 			}
 		}
 	}
