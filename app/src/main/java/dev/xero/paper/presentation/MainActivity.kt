@@ -20,7 +20,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import dev.xero.paper.navigation.NavGraph
 import dev.xero.paper.presentation.notes.edit_notes.EditNoteScreen
 import dev.xero.paper.presentation.notes.noteslist.HomeScreen
 import dev.xero.paper.presentation.notes.noteslist.HomeScreenViewModel
@@ -33,9 +38,23 @@ class MainActivity : ComponentActivity() {
 		installSplashScreen()
 		setContent {
 			PaperTheme {
-//				val viewModel = hiltViewModel<HomeScreenViewModel>()
-//				HomeScreen(viewModel = viewModel)
-				EditNoteScreen()
+				// SETUP NAVIGATION
+				val navController: NavHostController = rememberNavController()
+				NavHost(
+					navController = navController,
+					startDestination = NavGraph.Screens.Home.name
+				) {
+					// ROUTE: Home
+					composable(route = NavGraph.Screens.Home.name) {
+						val viewModel = hiltViewModel<HomeScreenViewModel>()
+						HomeScreen(viewModel = viewModel)
+					}
+
+					// ROUTE: Edit Note
+					composable(route = NavGraph.Screens.EditNote.name) {
+						EditNoteScreen()
+					}
+				}
 			}
 		}
 	}
