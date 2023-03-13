@@ -18,11 +18,9 @@ package dev.xero.paper.presentation.notes.notes_list
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.xero.paper.domain.model.NoteDBEntity
 import dev.xero.paper.domain.usecases.NoteUseCases
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
