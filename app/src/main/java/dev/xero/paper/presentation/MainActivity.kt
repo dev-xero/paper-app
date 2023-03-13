@@ -20,9 +20,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import dev.xero.paper.presentation.notes.noteslist.HomeScreen
-import dev.xero.paper.presentation.notes.noteslist.HomeScreenViewModel
+import dev.xero.paper.navigation.NavGraph
+import dev.xero.paper.presentation.notes.edit_notes.EditNoteScreen
+import dev.xero.paper.presentation.notes.edit_notes.EditNoteScreenViewModel
+import dev.xero.paper.presentation.notes.notes_list.HomeScreen
+import dev.xero.paper.presentation.notes.notes_list.HomeScreenViewModel
 import dev.xero.paper.presentation.ui.theme.PaperTheme
 
 @AndroidEntryPoint
@@ -32,8 +39,30 @@ class MainActivity : ComponentActivity() {
 		installSplashScreen()
 		setContent {
 			PaperTheme {
-				val viewModel = hiltViewModel<HomeScreenViewModel>()
-				HomeScreen(viewModel = viewModel)
+				// SETUP NAVIGATION
+				val navController: NavHostController = rememberNavController()
+				NavHost(
+					navController = navController,
+					startDestination = NavGraph.Screens.Home.name
+				) {
+					// ROUTE: Home
+					composable(route = NavGraph.Screens.Home.name) {
+						val viewModel = hiltViewModel<HomeScreenViewModel>()
+						HomeScreen(
+							viewModel = viewModel,
+							onAddNoteButtonClicked = { navController.navigate(NavGraph.Screens.EditNote.name) }
+						)
+					}
+
+					// ROUTE: Edit Note
+					composable(route = NavGraph.Screens.EditNote.name) {
+						val viewModel = hiltViewModel<EditNoteScreenViewModel>()
+						EditNoteScreen(
+							viewModel = viewModel,
+							onBackButtonClicked = { navController.navigate(NavGraph.Screens.Home.name) }
+						)
+					}
+				}
 			}
 		}
 	}

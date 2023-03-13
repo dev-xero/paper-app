@@ -13,52 +13,54 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.xero.paper.presentation.notes.noteslist.components
+package dev.xero.paper.presentation.notes.notes_list.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import dev.xero.paper.R
-import dev.xero.paper.presentation.ui.theme.Grey100
-import dev.xero.paper.presentation.ui.theme.Grey300
+import dev.xero.paper.presentation.ui.theme.OnSurface
+import dev.xero.paper.presentation.ui.theme.SurfaceDark
 
 @Composable
-fun EmptyNoteListDisplay(
+fun AddNoteButton(
 	modifier: Modifier = Modifier,
 	isDarkTheme: Boolean
 ) {
-	Column(
-		modifier = modifier.fillMaxSize(),
-		verticalArrangement = Arrangement.spacedBy(24.dp, Alignment.CenterVertically),
-		horizontalAlignment = Alignment.CenterHorizontally
+	Row(
+		modifier = modifier.padding(horizontal = 24.dp),
+		horizontalArrangement = Arrangement.spacedBy(8.dp),
+		verticalAlignment = Alignment.CenterVertically
 	) {
-		val documentIconRes = when(isDarkTheme) {
-			true -> R.drawable.document_icon_dark
-			else -> R.drawable.document_icon_light
-		}
-
-		Image(
-			painter = painterResource(id = documentIconRes),
-			contentDescription = "no notes found",
-			modifier = Modifier.align(Alignment.CenterHorizontally)
+		Icon(
+			painter = painterResource(id = R.drawable.app_icon_light),
+			contentDescription = "add note",
+			tint = when(isDarkTheme) {
+				true -> SurfaceDark
+				else -> OnSurface
+	    },
+			modifier = Modifier.size(24.dp)
 		)
-		
+
 		Text(
-			text = stringResource(id = R.string.note_tip),
+			text = "Add Note",
 			style = MaterialTheme.typography.subtitle2,
 			color = when(isDarkTheme) {
-				true -> Grey100
-				else -> Grey300
-			}
+				true -> SurfaceDark
+				else -> Color(0xFFEBF7EE)
+			},
+			fontWeight = FontWeight.Bold,
 		)
 	}
 }
