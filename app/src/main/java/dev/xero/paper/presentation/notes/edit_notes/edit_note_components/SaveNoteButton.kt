@@ -13,20 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.xero.paper.presentation.notes.notes_list.components
+package dev.xero.paper.presentation.notes.edit_notes.edit_note_components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import dev.xero.paper.R
@@ -34,9 +32,9 @@ import dev.xero.paper.presentation.ui.theme.OnSurface
 import dev.xero.paper.presentation.ui.theme.SurfaceDark
 
 @Composable
-fun AddNoteButton(
+fun SaveNoteButton(
 	modifier: Modifier = Modifier,
-	isDarkTheme: Boolean
+	isDarkTheme: Boolean,
 ) {
 	Row(
 		modifier = modifier.padding(horizontal = 24.dp),
@@ -44,21 +42,20 @@ fun AddNoteButton(
 		verticalAlignment = Alignment.CenterVertically
 	) {
 		Icon(
-			painter = painterResource(id = R.drawable.app_icon_light),
-			contentDescription = "add note",
+			painter = painterResource(id = R.drawable.save_note_icon),
+			contentDescription = null,
+			modifier = modifier.size(24.dp),
 			tint = when(isDarkTheme) {
 				true -> SurfaceDark
 				else -> OnSurface
-	    },
-			modifier = Modifier.size(18.dp)
+			}
 		)
-
 		Text(
-			text = "Add Note",
+			text = stringResource(id = R.string.save_note),
 			style = MaterialTheme.typography.subtitle2,
 			color = when(isDarkTheme) {
 				true -> SurfaceDark
-				else -> Color(0xFFEBF7EE)
+				else -> OnSurface
 			},
 			fontWeight = FontWeight.Bold,
 		)

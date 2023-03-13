@@ -19,4 +19,5 @@
     <string name="home_text">— Paper, Organize your notes.</string>
     <string name="efficiently">\t\t\t\tEfficiently.</string>
     <string name="note_tip">To start creating notes, click on the note button</string>
+    <string name="save_note">Save Note</string>
 </resources>

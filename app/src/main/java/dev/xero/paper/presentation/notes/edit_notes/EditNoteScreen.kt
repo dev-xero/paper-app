@@ -18,7 +18,9 @@ package dev.xero.paper.presentation.notes.edit_notes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.FloatingActionButtonDefaults
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -26,7 +28,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.xero.paper.presentation.notes.edit_notes.edit_note_components.BackButton
 import dev.xero.paper.presentation.notes.edit_notes.edit_note_components.InputBox
+import dev.xero.paper.presentation.notes.edit_notes.edit_note_components.SaveNoteButton
 import dev.xero.paper.presentation.notes.edit_notes.utils.InputType
+import dev.xero.paper.presentation.ui.theme.Primary
 import dev.xero.paper.presentation.ui.theme.Secondary
 import dev.xero.paper.presentation.ui.theme.SurfaceDark
 
@@ -63,8 +67,15 @@ fun EditNoteScreen(
 			}
 		},
 		floatingActionButton = {
-			FloatingActionButton(onClick = {viewModel.addNote()}) {
-				Text(text = "Save Note")
+			FloatingActionButton(
+				onClick = {viewModel.addNote()},
+				backgroundColor = Primary,
+				shape = RoundedCornerShape(4.dp),
+				elevation = FloatingActionButtonDefaults.elevation(0.dp),
+			) {
+				SaveNoteButton(
+					isDarkTheme = isDarkTheme
+				)
 			}
 		}
 	) {padding ->
