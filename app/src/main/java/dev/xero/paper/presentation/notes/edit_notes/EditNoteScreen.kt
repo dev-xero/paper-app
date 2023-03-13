@@ -38,7 +38,8 @@ import dev.xero.paper.presentation.ui.theme.SurfaceDark
 fun EditNoteScreen(
 	modifier: Modifier = Modifier,
 	viewModel: EditNoteScreenViewModel,
-	onBackButtonClicked: () -> Unit
+	onBackButtonClicked: () -> Unit,
+	onSaveNoteButtonClicked: () -> Unit
 ) {
 	val isDarkTheme = isSystemInDarkTheme()
 	val title = viewModel.title
@@ -68,7 +69,10 @@ fun EditNoteScreen(
 		},
 		floatingActionButton = {
 			FloatingActionButton(
-				onClick = {viewModel.addNote()},
+				onClick = {
+					viewModel.addNote()
+					onSaveNoteButtonClicked()
+				},
 				backgroundColor = Primary,
 				shape = RoundedCornerShape(4.dp),
 				elevation = FloatingActionButtonDefaults.elevation(0.dp),
