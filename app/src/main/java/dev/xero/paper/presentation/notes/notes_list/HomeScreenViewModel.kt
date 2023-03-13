@@ -30,11 +30,4 @@ class HomeScreenViewModel @Inject constructor(
 	private val noteUseCases: NoteUseCases
 ) : ViewModel() {
 	var notes: LiveData<List<NoteDBEntity>> = noteUseCases.getNotesUseCase().asLiveData()
-
-	fun addNote(note: NoteDBEntity) {
-		viewModelScope.launch {
-			noteUseCases.addNoteUseCase(note)
-		}
-	}
-
 }
