@@ -15,14 +15,45 @@
  */
 package dev.xero.paper.navigation
 
+import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import dev.xero.paper.presentation.notes.edit_notes.EditNoteScreen
+import dev.xero.paper.presentation.notes.edit_notes.EditNoteScreenViewModel
+import dev.xero.paper.presentation.notes.notes_list.HomeScreen
+import dev.xero.paper.presentation.notes.notes_list.HomeScreenViewModel
 
-class NavGraph {
+enum class Screens {
+	Home,
+	EditNote
+}
 
-	enum class Screens {
-		Home,
-		EditNote
+@Composable
+fun SetupNavGraph(
+	navHostController: NavHostController
+) {
+	NavHost(
+		navController = navHostController,
+		startDestination = Screens.Home.name
+	) {
+		// ROUTE: Home
+		composable(route = Screens.Home.name) {
+			val viewModel = hiltViewModel<HomeScreenViewModel>()
+			HomeScreen(
+				viewModel = viewModel,
+				onAddNoteButtonClicked = { navHostController.navigate(Screens.EditNote.name) }
+			)
+		}
+
+		// ROUTE: Edit Note
+		composable(route = Screens.EditNote.name) {
+			val viewModel = hiltViewModel<EditNoteScreenViewModel>()
+			EditNoteScreen(
+				viewModel = viewModel,
+				onBackButtonClicked = {navHostController.navigate(Screens.Home.name) }
+			)
+		}
 	}
-
 }
