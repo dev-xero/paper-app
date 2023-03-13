@@ -24,10 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import dev.xero.paper.presentation.notes.edit_notes.utils.InputType
-import dev.xero.paper.presentation.ui.theme.BgDark
-import dev.xero.paper.presentation.ui.theme.Grey100
-import dev.xero.paper.presentation.ui.theme.Grey500
-import dev.xero.paper.presentation.ui.theme.OnSurface
+import dev.xero.paper.presentation.ui.theme.*
 
 @Composable
 fun InputBox(
@@ -71,6 +68,15 @@ fun InputBox(
 			placeholderColor = when(inputType) {
 				InputType.Title -> colorMap["placeholder_title"]!!
 				else -> colorMap["placeholder_content"]!!
+			},
+			cursorColor = Primary,
+			textColor = when(inputType) {
+				InputType.Title -> {
+					if (isDarkTheme) OnSurface else Grey500
+				}
+				else -> {
+					if (isDarkTheme) Grey100 else Grey300
+				}
 			}
 		)
 	)
