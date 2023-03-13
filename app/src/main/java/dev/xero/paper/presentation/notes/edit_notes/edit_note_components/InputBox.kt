@@ -15,7 +15,6 @@
  */
 package dev.xero.paper.presentation.notes.edit_notes.edit_note_components
 
-import android.renderscript.ScriptGroup.Input
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField

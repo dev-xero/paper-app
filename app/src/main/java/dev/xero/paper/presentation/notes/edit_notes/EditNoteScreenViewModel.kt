@@ -15,8 +15,9 @@
  */
 package dev.xero.paper.presentation.notes.edit_notes
 
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.xero.paper.domain.usecases.NoteUseCases
@@ -26,6 +27,15 @@ import javax.inject.Inject
 class EditNoteScreenViewModel @Inject constructor (
 	val useCases: NoteUseCases
 ) : ViewModel() {
-	var title: MutableState<String> = mutableStateOf("")
-	var content: MutableState<String> = mutableStateOf("")
+	var title: String by mutableStateOf("")
+	var content: String by mutableStateOf("")
+
+	fun updateTitle(value: String) {
+		title = value
+	}
+
+	fun updateContent(value: String) {
+		content = value
+	}
+
 }

@@ -25,18 +25,18 @@ import androidx.compose.ui.unit.dp
 import dev.xero.paper.presentation.notes.edit_notes.edit_note_components.BackButton
 import dev.xero.paper.presentation.notes.edit_notes.edit_note_components.InputBox
 import dev.xero.paper.presentation.notes.edit_notes.utils.InputType
-import dev.xero.paper.presentation.ui.theme.OnSurface
 import dev.xero.paper.presentation.ui.theme.Secondary
 import dev.xero.paper.presentation.ui.theme.SurfaceDark
 
 @Composable
 fun EditNoteScreen(
 	modifier: Modifier = Modifier,
+	viewModel: EditNoteScreenViewModel,
 	onBackButtonClicked: () -> Unit
 ) {
 	val isDarkTheme = isSystemInDarkTheme()
-	/*TODO: REPLACE FAKE DATA LATER*/
-	var valueFake = ""
+	val title = viewModel.title
+	val content = viewModel.content
 
 	Scaffold(
 		topBar = {
@@ -68,15 +68,19 @@ fun EditNoteScreen(
 			InputBox(
 				inputType = InputType.Title,
 				isDarkTheme = isDarkTheme,
-				value = valueFake,
-				onValueChange = { }
+				value = title,
+				onValueChange = {
+					viewModel.updateTitle(it)
+				}
 			)
 
 			InputBox(
 				inputType = InputType.Content,
 				isDarkTheme = isDarkTheme,
-				value = valueFake,
-				onValueChange = { }
+				value = content,
+				onValueChange = {
+					viewModel.updateContent(it)
+				}
 			)
 		}
 	}
