@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.xero.paper.presentation.notes.noteslist
+package dev.xero.paper.presentation.notes.notes_list
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
@@ -30,16 +30,17 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import dev.xero.paper.presentation.notes.noteslist.components.AddNoteButton
-import dev.xero.paper.presentation.notes.noteslist.components.EmptyNoteListDisplay
-import dev.xero.paper.presentation.notes.noteslist.components.HomeDisplay
-import dev.xero.paper.presentation.notes.noteslist.components.SearchBar
+import dev.xero.paper.presentation.notes.notes_list.components.AddNoteButton
+import dev.xero.paper.presentation.notes.notes_list.components.EmptyNoteListDisplay
+import dev.xero.paper.presentation.notes.notes_list.components.HomeDisplay
+import dev.xero.paper.presentation.notes.notes_list.components.SearchBar
 import dev.xero.paper.presentation.ui.theme.Primary
 
 @Composable
 fun HomeScreen(
 	modifier: Modifier = Modifier,
-	viewModel: HomeScreenViewModel = hiltViewModel()
+	viewModel: HomeScreenViewModel = hiltViewModel(),
+	onAddNoteButtonClicked: () -> Unit
 ) {
 	val notes = viewModel.notes.observeAsState(initial = emptyList())
 	val isDarkTheme = isSystemInDarkTheme()
@@ -58,7 +59,7 @@ fun HomeScreen(
 	
 		floatingActionButton = {
 			FloatingActionButton(
-				onClick = { /*TODO*/ },
+				onClick = onAddNoteButtonClicked,
 				shape = RoundedCornerShape(4.dp),
 				backgroundColor = Primary,
 				elevation = FloatingActionButtonDefaults.elevation(

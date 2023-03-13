@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.xero.paper.presentation.notes.noteslist
+package dev.xero.paper.presentation.notes.notes_list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

@@ -27,8 +27,8 @@ import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.xero.paper.navigation.NavGraph
 import dev.xero.paper.presentation.notes.edit_notes.EditNoteScreen
-import dev.xero.paper.presentation.notes.noteslist.HomeScreen
-import dev.xero.paper.presentation.notes.noteslist.HomeScreenViewModel
+import dev.xero.paper.presentation.notes.notes_list.HomeScreen
+import dev.xero.paper.presentation.notes.notes_list.HomeScreenViewModel
 import dev.xero.paper.presentation.ui.theme.PaperTheme
 
 @AndroidEntryPoint
@@ -47,7 +47,10 @@ class MainActivity : ComponentActivity() {
 					// ROUTE: Home
 					composable(route = NavGraph.Screens.Home.name) {
 						val viewModel = hiltViewModel<HomeScreenViewModel>()
-						HomeScreen(viewModel = viewModel)
+						HomeScreen(
+							viewModel = viewModel,
+							onAddNoteButtonClicked = { navController.navigate(NavGraph.Screens.EditNote.name) }
+						)
 					}
 
 					// ROUTE: Edit Note

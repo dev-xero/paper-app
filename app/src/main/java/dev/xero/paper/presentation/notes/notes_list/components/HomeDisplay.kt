@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.xero.paper.presentation.notes.noteslist.components
+package dev.xero.paper.presentation.notes.notes_list.components
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
