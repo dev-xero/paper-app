@@ -15,6 +15,7 @@
  */
 package dev.xero.paper.presentation.notes.edit_notes
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
@@ -68,7 +69,7 @@ fun EditNoteScreen(
 				BackButton(
 					isDarkTheme = isDarkTheme,
 					modifier = Modifier.padding(
-						horizontal = 12.dp,
+						horizontal = 6.dp,
 						vertical = 8.dp
 					),
 					onButtonClick = onBackButtonClicked
@@ -92,7 +93,6 @@ fun EditNoteScreen(
 		}
 	) {padding ->
 		Column(
-			modifier = Modifier.padding(horizontal = 8.dp),
 			verticalArrangement = Arrangement.spacedBy(4.dp)
 		) {
 			InputBox(
@@ -110,6 +110,20 @@ fun EditNoteScreen(
 				),
 				focusRequester = focusRequester
 			)
+
+			Canvas(
+				modifier = Modifier
+					.size(
+						width = 100.dp,
+						height = 2.dp
+					)
+					.padding(start = 12.dp)
+			) {
+				drawRoundRect(
+					color = Primary,
+					size = size
+				)
+			}
 
 			InputBox(
 				inputType = InputType.Content,
