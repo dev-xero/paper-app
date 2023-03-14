@@ -84,7 +84,12 @@ fun EditNoteScreen(
 				},
 				backgroundColor = Primary,
 				shape = RoundedCornerShape(4.dp),
-				elevation = FloatingActionButtonDefaults.elevation(0.dp),
+				elevation = FloatingActionButtonDefaults.elevation(
+					defaultElevation = 0.dp,
+					pressedElevation = 0.dp,
+					focusedElevation = 0.dp,
+					hoveredElevation = 0.dp
+				)
 			) {
 				SaveNoteButton(
 					isDarkTheme = isDarkTheme
