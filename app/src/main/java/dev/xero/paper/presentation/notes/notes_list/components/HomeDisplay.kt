@@ -15,6 +15,9 @@
  */
 package dev.xero.paper.presentation.notes.notes_list.components
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -23,37 +26,42 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import dev.xero.paper.R
-import dev.xero.paper.presentation.ui.theme.Black
-import dev.xero.paper.presentation.ui.theme.Grey500
-import dev.xero.paper.presentation.ui.theme.OnSurface
-import dev.xero.paper.presentation.ui.theme.Primary
+import dev.xero.paper.presentation.ui.theme.*
 
 @Composable
 fun HomeDisplay(
 	modifier: Modifier = Modifier,
 	isDarkTheme: Boolean
 ) {
-	Text(
-		text = stringResource(id = R.string.home_text),
-		modifier = modifier.padding(
-			top = 12.dp,
-			bottom = 8.dp
-		),
-		style = MaterialTheme.typography.h3,
-		color = when(isDarkTheme) {
-			true -> OnSurface
-			else -> Black
-		}
-	)
-	Text(
-		text = stringResource(id = R.string.efficiently),
-		modifier = Modifier.padding(
-			bottom = 12.dp
-		),
-		style = MaterialTheme.typography.h4,
-		color = when(isDarkTheme) {
-			true -> Primary
-			else -> Grey500
-		}
-	)
+	Column(
+		modifier = Modifier
+			.fillMaxWidth()
+			.background(
+				color = if (isDarkTheme) BgDark else OnSurface
+			)
+	) {
+		Text(
+			text = stringResource(id = R.string.home_text),
+			modifier = modifier.padding(
+				top = 12.dp
+			),
+			style = MaterialTheme.typography.h3,
+			color = when(isDarkTheme) {
+				true -> OnSurface
+				else -> Black
+			}
+		)
+		Text(
+			text = stringResource(id = R.string.efficiently),
+			style = MaterialTheme.typography.h4,
+			modifier = Modifier.padding(
+				start = 40.dp,
+				top = 8.dp
+			),
+			color = when(isDarkTheme) {
+				true -> Primary
+				else -> Grey500
+			}
+		)
+	}
 }

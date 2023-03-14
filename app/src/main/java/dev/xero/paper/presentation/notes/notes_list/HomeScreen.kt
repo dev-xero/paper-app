@@ -16,24 +16,19 @@
 package dev.xero.paper.presentation.notes.notes_list
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.FloatingActionButtonDefaults
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import dev.xero.paper.presentation.notes.notes_list.components.AddNoteButton
-import dev.xero.paper.presentation.notes.notes_list.components.EmptyNoteListDisplay
-import dev.xero.paper.presentation.notes.notes_list.components.HomeDisplay
-import dev.xero.paper.presentation.notes.notes_list.components.SearchBar
+import dev.xero.paper.presentation.notes.notes_list.components.*
 import dev.xero.paper.presentation.ui.theme.Primary
 
 @Composable
@@ -74,25 +69,35 @@ fun HomeScreen(
 		}
 	)
 	{ padding ->
-		LazyColumn(
-			modifier = modifier
-				.padding(12.dp)
-				.fillMaxSize()
+		Column(
+			modifier = modifier.fillMaxWidth()
 		) {
-			item {
-				HomeDisplay(isDarkTheme = isDarkTheme)
-				if (notes.value.isEmpty()) {
-					EmptyNoteListDisplay(
-						isDarkTheme = isDarkTheme,
-						modifier = Modifier.padding(top = 124.dp)
-					)
+			HomeDisplay(
+				isDarkTheme = isDarkTheme,
+				modifier = Modifier.padding(horizontal = 12.dp)
+			)
+
+			if (notes.value.isEmpty()) {
+				Box(contentAlignment = Alignment.Center) {
+					LazyColumn(
+						modifier = Modifier.fillMaxSize(),
+						verticalArrangement = Arrangement.Center
+					) {
+						item {
+							EmptyNoteListDisplay(
+								isDarkTheme = isDarkTheme,
+								modifier = Modifier.padding(bottom = 64.dp)
+							)
+						}
+					}
 				}
 			}
 
-			items(notes.value, key = { note -> note.id }) { note ->
-				Text(text = note.title)
-			}
+			NoteGrid(
+				notes = notes,
+				isDarkTheme = isDarkTheme,
+				modifier = Modifier.padding(top = 12.dp)
+			)
 		}
-
 	}
 }

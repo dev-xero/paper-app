@@ -23,13 +23,11 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.xero.paper.domain.model.NoteDBEntity
-import dev.xero.paper.presentation.ui.theme.Grey500
-import dev.xero.paper.presentation.ui.theme.Primary
-import dev.xero.paper.presentation.ui.theme.Secondary
-import dev.xero.paper.presentation.ui.theme.SurfaceDark
+import dev.xero.paper.presentation.ui.theme.*
 
 @Composable
 fun NoteItem(
@@ -38,17 +36,29 @@ fun NoteItem(
 	modifier: Modifier = Modifier
 ) {
 	Card(
-		modifier = modifier.padding(8.dp),
 		shape = RoundedCornerShape(4.dp),
 		elevation = 0.dp,
 		backgroundColor = if (isDarkTheme) SurfaceDark else Secondary
 	) {
-		Column() {
+		Column(
+			modifier = modifier.padding(8.dp)
+		) {
 			Text(
 				text = note.title,
 				style = MaterialTheme.typography.subtitle1,
 				fontSize = 18.sp,
-				color = if (isDarkTheme) Primary else Grey500
+				color = if (isDarkTheme) Primary else Grey500,
+				maxLines = 2,
+				overflow = TextOverflow.Ellipsis,
+				modifier = Modifier.padding(bottom = 8.dp)
+			)
+			Text(
+				text = note.content,
+				style = MaterialTheme.typography.body1,
+				color = if (isDarkTheme) Grey100 else Grey300,
+				maxLines = 6,
+				fontSize = 14.sp,
+				overflow = TextOverflow.Ellipsis
 			)
 		}
 	}
