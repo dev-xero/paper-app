@@ -35,10 +35,6 @@ class EditNoteScreenViewModel @Inject constructor (
 
 	fun updateTitle(value: String) {
 		title = value
-		val newNote = NoteDBEntity(
-			title = title,
-			content = content
-		)
 	}
 
 	fun updateContent(value: String) {
@@ -47,7 +43,7 @@ class EditNoteScreenViewModel @Inject constructor (
 
 	fun addNote() {
 		val newNote = NoteDBEntity(
-			title = title,
+			title = title.ifBlank { "Title" },
 			content = content
 		)
 		viewModelScope.launch {
