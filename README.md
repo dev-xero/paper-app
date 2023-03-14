@@ -12,6 +12,6 @@ Manage all your important notes with ease
 - [x] Minimal and Aesthetic UI
 
 ### Donating
-<a href="https://www.buymeacoffee.com/xeroKun"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=xeroKun&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff" /></a>
+<a href="https://www.buymeacoffee.com/xeroKun"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=xeroKun&button_colour=3DDC84&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff" /></a>
 
 Each donation is greatly appreciated, thanks in advance!
