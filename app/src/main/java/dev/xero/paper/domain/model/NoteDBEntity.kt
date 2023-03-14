@@ -20,7 +20,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "notes")
 data class NoteDBEntity(
-	@PrimaryKey val id: Long = 0L,
+	@PrimaryKey(autoGenerate = true)
+	val id: Long = 0L,
 	val title: String,
 	val content: String
 )

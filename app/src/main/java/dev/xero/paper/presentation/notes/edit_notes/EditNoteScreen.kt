@@ -18,13 +18,25 @@ package dev.xero.paper.presentation.notes.edit_notes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.FloatingActionButtonDefaults
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import dev.xero.paper.presentation.notes.edit_notes.edit_note_components.BackButton
 import dev.xero.paper.presentation.notes.edit_notes.edit_note_components.InputBox
+import dev.xero.paper.presentation.notes.edit_notes.edit_note_components.SaveNoteButton
 import dev.xero.paper.presentation.notes.edit_notes.utils.InputType
+import dev.xero.paper.presentation.ui.theme.Primary
 import dev.xero.paper.presentation.ui.theme.Secondary
 import dev.xero.paper.presentation.ui.theme.SurfaceDark
 
@@ -32,11 +44,14 @@ import dev.xero.paper.presentation.ui.theme.SurfaceDark
 fun EditNoteScreen(
 	modifier: Modifier = Modifier,
 	viewModel: EditNoteScreenViewModel,
-	onBackButtonClicked: () -> Unit
+	onBackButtonClicked: () -> Unit,
+	onSaveNoteButtonClicked: () -> Unit
 ) {
 	val isDarkTheme = isSystemInDarkTheme()
 	val title = viewModel.title
 	val content = viewModel.content
+	val focusManager = LocalFocusManager.current
+	val focusRequester = remember { FocusRequester() }
 
 	Scaffold(
 		topBar = {
@@ -59,6 +74,21 @@ fun EditNoteScreen(
 					onButtonClick = onBackButtonClicked
 				)
 			}
+		},
+		floatingActionButton = {
+			FloatingActionButton(
+				onClick = {
+					viewModel.addNote()
+					onSaveNoteButtonClicked()
+				},
+				backgroundColor = Primary,
+				shape = RoundedCornerShape(4.dp),
+				elevation = FloatingActionButtonDefaults.elevation(0.dp),
+			) {
+				SaveNoteButton(
+					isDarkTheme = isDarkTheme
+				)
+			}
 		}
 	) {padding ->
 		Column(
@@ -71,7 +101,14 @@ fun EditNoteScreen(
 				value = title,
 				onValueChange = {
 					viewModel.updateTitle(it)
-				}
+				},
+				keyboardActions = KeyboardActions(
+					onNext = { focusManager.moveFocus(FocusDirection.Down) }
+				),
+				keyboardOptions = KeyboardOptions.Default.copy(
+					imeAction = ImeAction.Next
+				),
+				focusRequester = focusRequester
 			)
 
 			InputBox(
@@ -80,7 +117,13 @@ fun EditNoteScreen(
 				value = content,
 				onValueChange = {
 					viewModel.updateContent(it)
-				}
+				},
+				keyboardActions = KeyboardActions(
+					onDone = { focusManager.clearFocus() }
+				),
+				keyboardOptions = KeyboardOptions.Default.copy(
+					imeAction = ImeAction.Done
+				)
 			)
 		}
 	}

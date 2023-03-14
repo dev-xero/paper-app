@@ -68,7 +68,6 @@ fun HomeScreen(
 					focusedElevation = 0.dp,
 					hoveredElevation = 0.dp
 				),
-				modifier = Modifier.padding(12.dp)
 			) {
 				AddNoteButton(isDarkTheme = isDarkTheme)
 			}

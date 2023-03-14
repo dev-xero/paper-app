@@ -52,7 +52,8 @@ fun SetupNavGraph(
 			val viewModel = hiltViewModel<EditNoteScreenViewModel>()
 			EditNoteScreen(
 				viewModel = viewModel,
-				onBackButtonClicked = {navHostController.navigate(Screens.Home.name) }
+				onBackButtonClicked = { navHostController.navigate(Screens.Home.name) },
+				onSaveNoteButtonClicked = { navHostController.navigate(Screens.Home.name) }
 			)
 		}
 	}
