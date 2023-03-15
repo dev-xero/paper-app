@@ -21,11 +21,15 @@ import androidx.lifecycle.asLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.xero.paper.domain.model.NoteDBEntity
 import dev.xero.paper.domain.usecases.NoteUseCases
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
 	private val noteUseCases: NoteUseCases
 ) : ViewModel() {
-	var notes: LiveData<List<NoteDBEntity>> = noteUseCases.getNotesUseCase().asLiveData()
+	var notes: LiveData<List<NoteDBEntity>> = noteUseCases.getNotesUseCase().map {
+		it.asReversed()
+	}.asLiveData()
+
 }
