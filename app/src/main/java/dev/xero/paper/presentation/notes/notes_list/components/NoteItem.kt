@@ -15,15 +15,17 @@
  */
 package dev.xero.paper.presentation.notes.notes_list.components
 
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -35,15 +37,22 @@ import dev.xero.paper.presentation.ui.theme.*
 fun NoteItem(
 	note: NoteDBEntity,
 	isDarkTheme: Boolean,
-	modifier: Modifier = Modifier
+	modifier: Modifier = Modifier,
+	onDoubleTap: (Offset) -> Unit
 ) {
 	Card(
 		shape = RoundedCornerShape(4.dp),
 		elevation = 0.dp,
-		backgroundColor = if (isDarkTheme) SurfaceDark else Secondary
+		backgroundColor = if (isDarkTheme) SurfaceDark else Secondary,
+		modifier = modifier
+			.pointerInput(Unit) {
+				detectTapGestures (
+					onDoubleTap = onDoubleTap
+				)
+			}
 	) {
 		Column(
-			modifier = modifier
+			modifier = Modifier
 				.padding(16.dp)
 		) {
 			Text(

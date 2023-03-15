@@ -46,6 +46,7 @@ fun NoteGrid(
 			NoteItem(
 				note = note,
 				isDarkTheme = isDarkTheme,
+				onDoubleTap = { /*TODO: IMPLEMENT THIS*/ }
 			)
 		}
 	}
