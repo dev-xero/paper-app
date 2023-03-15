@@ -39,8 +39,8 @@ fun NoteGrid(
 			.fillMaxSize()
 			.padding(horizontal = 12.dp),
 		contentPadding = PaddingValues(12.dp),
-		horizontalArrangement = Arrangement.spacedBy(12.dp),
-		verticalArrangement = Arrangement.spacedBy(12.dp)
+		horizontalArrangement = Arrangement.spacedBy(8.dp),
+		verticalArrangement = Arrangement.spacedBy(8.dp)
 	) {
 		items(notes.value, key = { note -> note.id }) { note ->
 			NoteItem(
