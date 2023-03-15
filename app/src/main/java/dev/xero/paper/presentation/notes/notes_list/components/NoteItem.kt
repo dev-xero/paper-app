@@ -16,6 +16,7 @@
 package dev.xero.paper.presentation.notes.notes_list.components
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -23,6 +24,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -41,7 +43,8 @@ fun NoteItem(
 		backgroundColor = if (isDarkTheme) SurfaceDark else Secondary
 	) {
 		Column(
-			modifier = modifier.padding(8.dp)
+			modifier = modifier
+				.padding(16.dp)
 		) {
 			Text(
 				text = note.title,
@@ -50,7 +53,8 @@ fun NoteItem(
 				color = if (isDarkTheme) Primary else Grey500,
 				maxLines = 2,
 				overflow = TextOverflow.Ellipsis,
-				modifier = Modifier.padding(bottom = 8.dp)
+				modifier = Modifier.padding(bottom = 8.dp),
+				fontWeight = FontWeight.Black
 			)
 			Text(
 				text = note.content,
