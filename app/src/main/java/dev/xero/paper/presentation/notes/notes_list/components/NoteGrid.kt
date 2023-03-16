@@ -23,6 +23,7 @@ import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.unit.dp
 import dev.xero.paper.domain.model.NoteDBEntity
 
@@ -31,6 +32,7 @@ import dev.xero.paper.domain.model.NoteDBEntity
 fun NoteGrid(
 	notes: State<List<NoteDBEntity>>,
 	isDarkTheme: Boolean,
+	onDoubleTap: () -> Unit,
 	modifier: Modifier = Modifier
 ) {
 	LazyVerticalStaggeredGrid(
@@ -46,7 +48,7 @@ fun NoteGrid(
 			NoteItem(
 				note = note,
 				isDarkTheme = isDarkTheme,
-				onDoubleTap = { /*TODO: IMPLEMENT THIS*/ }
+				onDoubleTap = onDoubleTap
 			)
 		}
 	}

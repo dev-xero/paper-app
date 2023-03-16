@@ -38,7 +38,7 @@ fun NoteItem(
 	note: NoteDBEntity,
 	isDarkTheme: Boolean,
 	modifier: Modifier = Modifier,
-	onDoubleTap: (Offset) -> Unit
+	onDoubleTap: () -> Unit
 ) {
 	Card(
 		shape = RoundedCornerShape(4.dp),
@@ -47,7 +47,7 @@ fun NoteItem(
 		modifier = modifier
 			.pointerInput(Unit) {
 				detectTapGestures (
-					onDoubleTap = onDoubleTap
+					onDoubleTap = { onDoubleTap() }
 				)
 			}
 	) {
