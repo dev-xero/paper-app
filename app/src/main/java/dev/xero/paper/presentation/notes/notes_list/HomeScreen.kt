@@ -68,8 +68,7 @@ fun HomeScreen(
 						start = 24.dp,
 						end = 24.dp,
 						bottom = 12.dp
-					),
-					textAlign = TextAlign.Center
+					)
 				)
 				Text(
 					text = "Deleting a note removes it permanently, it can't be undone.",
