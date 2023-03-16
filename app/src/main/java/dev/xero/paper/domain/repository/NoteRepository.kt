@@ -27,9 +27,6 @@ interface NoteRepository {
 
 	suspend fun addNote(note: NoteDBEntity)
 
-	fun searchNotes(query: String)
-		: Flow<List<NoteDBEntity>>?
-
 	suspend fun updateNote(note: NoteDBEntity)
 
 	suspend fun deleteNote(note: NoteDBEntity)
