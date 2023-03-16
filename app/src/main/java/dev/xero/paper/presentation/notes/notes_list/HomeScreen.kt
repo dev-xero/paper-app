@@ -44,10 +44,8 @@ fun HomeScreen(
 	onEditNoteButtonClicked: (note: NoteDBEntity) -> Unit
 ) {
 	val notes = viewModel.notes.observeAsState(initial = emptyList())
+	val searchQuery = viewModel.searchQuery
 	val isDarkTheme = isSystemInDarkTheme()
-
-	/*TODO: FAKE DATA, REPLACE LATER */
-	var searchContentFake = ""
 
 	val coroutineScope = rememberCoroutineScope()
 	val modalSheetState = rememberModalBottomSheetState(
@@ -118,8 +116,8 @@ fun HomeScreen(
 		Scaffold(
 			topBar = {
 				SearchBar(
-					searchContent = searchContentFake,
-					onSearchContentChange = { searchContentFake = it },
+					searchContent = searchQuery,
+					onSearchContentChange = { viewModel.updateSearchQuery(it) },
 					deviceThemeDark = isDarkTheme,
 				)
 			},

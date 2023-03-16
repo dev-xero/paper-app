@@ -15,6 +15,9 @@
  */
 package dev.xero.paper.presentation.notes.notes_list
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -35,9 +38,25 @@ class HomeScreenViewModel @Inject constructor(
 	}.asLiveData()
 
 	private var selectedNote: NoteDBEntity? = null
+	var searchQuery: String by mutableStateOf("")
 
 	fun selectNote(note: NoteDBEntity) {
 		selectedNote = note
+	}
+
+	fun updateSearchQuery(query: String) {
+		searchQuery = query
+		notes = if (searchQuery.isNotBlank()) {
+			noteUseCases.getNotesUseCase().map {
+				it.asReversed().filter { note ->
+					note.title.contains(searchQuery)
+				}
+			}.asLiveData()
+		} else {
+			noteUseCases.getNotesUseCase().map {
+				it.asReversed()
+			}.asLiveData()
+		}
 	}
 
 	fun deleteNote() {

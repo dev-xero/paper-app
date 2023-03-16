@@ -32,6 +32,11 @@ class NoteRepositoryImpl @Inject constructor (
 		return dao.getNoteById(id)
 	}
 
+	override fun searchNotes(query: String): Flow<List<NoteDBEntity>>? {
+		return dao.searchNotes(query)
+	}
+
+
 	override suspend fun addNote(note: NoteDBEntity) {
 		return dao.addNote(note)
 	}
