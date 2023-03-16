@@ -40,7 +40,8 @@ import kotlinx.coroutines.launch
 fun HomeScreen(
 	modifier: Modifier = Modifier,
 	viewModel: HomeScreenViewModel = hiltViewModel(),
-	onAddNoteButtonClicked: () -> Unit
+	onAddNoteButtonClicked: () -> Unit,
+	onEditNoteButtonClicked: (note: NoteDBEntity) -> Unit
 ) {
 	val notes = viewModel.notes.observeAsState(initial = emptyList())
 	val isDarkTheme = isSystemInDarkTheme()
@@ -140,6 +141,10 @@ fun HomeScreen(
 			}
 		)
 		{ padding ->
+			fun onTap(note: NoteDBEntity) {
+				onEditNoteButtonClicked(note)
+			}
+
 			fun onDoubleTap(note: NoteDBEntity) {
 				coroutineScope.launch {
 					if (modalSheetState.isVisible)
@@ -180,6 +185,9 @@ fun HomeScreen(
 					modifier = Modifier.padding(top = 12.dp),
 					onDoubleTap = {
 						onDoubleTap(it)
+					},
+					onTap = {
+						onTap(it)
 					}
 				)
 			}
