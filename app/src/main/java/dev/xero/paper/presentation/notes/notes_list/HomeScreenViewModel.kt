@@ -49,7 +49,7 @@ class HomeScreenViewModel @Inject constructor(
 		notes = if (searchQuery.isNotBlank()) {
 			noteUseCases.getNotesUseCase().map {
 				it.asReversed().filter { note ->
-					note.title.contains(searchQuery)
+					note.title.lowercase().contains(searchQuery.lowercase())
 				}
 			}.asLiveData()
 		} else {
