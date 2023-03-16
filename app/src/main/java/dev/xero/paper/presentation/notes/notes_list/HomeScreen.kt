@@ -26,10 +26,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import dev.xero.paper.domain.model.NoteDBEntity
 import dev.xero.paper.presentation.notes.notes_list.components.*
 import dev.xero.paper.presentation.ui.theme.*
 import kotlinx.coroutines.launch
@@ -84,6 +85,24 @@ fun HomeScreen(
 						else -> Grey500
 					}
 				)
+				Button(
+					onClick = {
+						coroutineScope.launch {
+							viewModel.deleteNote()
+							modalSheetState.hide()
+						}
+					},
+					modifier = Modifier.padding(
+						vertical = 12.dp,
+						horizontal = 24.dp
+					)
+				) {
+					Text(
+						text = "Delete Note",
+						style = MaterialTheme.typography.subtitle2,
+						fontWeight = FontWeight.Bold
+					)
+				}
 			}
 		},
 		scrimColor = when(isDarkTheme) {
@@ -121,13 +140,14 @@ fun HomeScreen(
 			}
 		)
 		{ padding ->
-			fun onDoubleTap() {
+			fun onDoubleTap(note: NoteDBEntity) {
 				coroutineScope.launch {
 					if (modalSheetState.isVisible)
 						modalSheetState.hide()
 					else
 						modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
 				}
+				viewModel.selectNote(note)
 			}
 
 			Column(
@@ -158,7 +178,9 @@ fun HomeScreen(
 					notes = notes,
 					isDarkTheme = isDarkTheme,
 					modifier = Modifier.padding(top = 12.dp),
-					onDoubleTap = { onDoubleTap() }
+					onDoubleTap = {
+						onDoubleTap(it)
+					}
 				)
 			}
 		}

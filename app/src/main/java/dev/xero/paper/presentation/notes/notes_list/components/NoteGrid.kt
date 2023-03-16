@@ -32,7 +32,7 @@ import dev.xero.paper.domain.model.NoteDBEntity
 fun NoteGrid(
 	notes: State<List<NoteDBEntity>>,
 	isDarkTheme: Boolean,
-	onDoubleTap: () -> Unit,
+	onDoubleTap: (note: NoteDBEntity) -> Unit,
 	modifier: Modifier = Modifier
 ) {
 	LazyVerticalStaggeredGrid(
@@ -48,7 +48,7 @@ fun NoteGrid(
 			NoteItem(
 				note = note,
 				isDarkTheme = isDarkTheme,
-				onDoubleTap = onDoubleTap
+				onDoubleTap = { onDoubleTap(note) }
 			)
 		}
 	}

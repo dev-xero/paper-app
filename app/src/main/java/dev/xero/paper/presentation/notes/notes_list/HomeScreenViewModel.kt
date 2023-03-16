@@ -18,10 +18,12 @@ package dev.xero.paper.presentation.notes.notes_list
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.xero.paper.domain.model.NoteDBEntity
 import dev.xero.paper.domain.usecases.NoteUseCases
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,5 +33,19 @@ class HomeScreenViewModel @Inject constructor(
 	var notes: LiveData<List<NoteDBEntity>> = noteUseCases.getNotesUseCase().map {
 		it.asReversed()
 	}.asLiveData()
+
+	private var selectedNote: NoteDBEntity? = null
+
+	fun selectNote(note: NoteDBEntity) {
+		selectedNote = note
+	}
+
+	fun deleteNote() {
+		if (selectedNote != null) {
+			viewModelScope.launch {
+				noteUseCases.deleteNoteUseCase(selectedNote!!)
+			}
+		}
+	}
 
 }
