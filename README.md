@@ -19,12 +19,12 @@ Manage all your important notes with ease
 - [x] Delete Notes
 
 ## ✅ Downloads
-[![Licence](https://img.shields.io/github/license/dev-xero/done-app?style=for-the-badge&color=3DDC84)](./LICENSE) [![GitHub release](https://img.shields.io/github/downloads/dev-xero/done-app/total?color=3DDC84&label=Downloads&logo=android&style=for-the-badge)](https://github.com/dev-xero/done-app/releases/tag/v1.0.2)
+[![Licence](https://img.shields.io/github/license/dev-xero/done-app?style=for-the-badge&color=3DDC84)](./LICENSE) [![GitHub release](https://img.shields.io/github/downloads/dev-xero/paper-app/total?color=3DDC84&label=Downloads&logo=android&style=for-the-badge)](hhttps://github.com/dev-xero/paper-app/releases/tag/v1.0)
 
 <details>
-  <summary> Steps </summary>
+  <summary> Installation Steps </summary>
   
-  1. [Download the app](https://github.com/dev-xero/done-app/releases/tag/v1.0.2) by clicking the green button or this link.
+  1. [Download the app](https://github.com/dev-xero/paper-app/releases/tag/v1.0) by clicking the green button or this link.
   2. Locate the file and install, you might get a warning, that's because the app isn't from the playstore, but it's safe to install.
   3. After installing, you should be able to use the app.
 </details>
