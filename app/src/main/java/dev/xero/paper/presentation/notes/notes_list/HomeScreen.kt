@@ -161,7 +161,7 @@ fun HomeScreen(
 					modifier = Modifier.padding(horizontal = 12.dp)
 				)
 
-				if (notes.value.isEmpty()) {
+				if (notes.value.isEmpty() && searchQuery.isEmpty()) {
 					Box(contentAlignment = Alignment.Center) {
 						LazyColumn(
 							modifier = Modifier.fillMaxSize(),
@@ -175,6 +175,11 @@ fun HomeScreen(
 							}
 						}
 					}
+				} else if (notes.value.isEmpty() && searchQuery.isNotEmpty()) {
+					NoSearchResult(
+						query = searchQuery,
+						isDarkTheme = isDarkTheme
+					)
 				}
 
 				NoteGrid(
