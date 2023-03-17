@@ -20,6 +20,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import dev.xero.paper.domain.model.NoteDBEntity
 import dev.xero.paper.presentation.notes.edit_notes.EditNoteScreen
 import dev.xero.paper.presentation.notes.edit_notes.EditNoteScreenViewModel
 import dev.xero.paper.presentation.notes.notes_list.HomeScreen
@@ -38,12 +39,18 @@ fun SetupNavGraph(
 		navController = navHostController,
 		startDestination = Screens.Home.name
 	) {
+		var noteContentState: NoteDBEntity? = null
+
 		// ROUTE: Home
 		composable(route = Screens.Home.name) {
 			val viewModel = hiltViewModel<HomeScreenViewModel>()
 			HomeScreen(
 				viewModel = viewModel,
-				onAddNoteButtonClicked = { navHostController.navigate(Screens.EditNote.name) }
+				onAddNoteButtonClicked = { navHostController.navigate(Screens.EditNote.name) },
+				onEditNoteButtonClicked = {
+					navHostController.navigate(Screens.EditNote.name)
+					noteContentState = it
+				}
 			)
 		}
 
@@ -52,8 +59,10 @@ fun SetupNavGraph(
 			val viewModel = hiltViewModel<EditNoteScreenViewModel>()
 			EditNoteScreen(
 				viewModel = viewModel,
+				noteContentState = noteContentState,
 				onBackButtonClicked = { navHostController.navigate(Screens.Home.name) },
-				onSaveNoteButtonClicked = { navHostController.navigate(Screens.Home.name) }
+				onSaveNoteButtonClicked = { navHostController.navigate(Screens.Home.name) },
+				onSetContent = { noteContentState = null }
 			)
 		}
 	}

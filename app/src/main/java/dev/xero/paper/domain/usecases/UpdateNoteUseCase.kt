@@ -13,27 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package dev.xero.paper.domain.usecases
 
-package dev.xero.paper.data.datasource.db
-
-import androidx.room.*
 import dev.xero.paper.domain.model.NoteDBEntity
-import kotlinx.coroutines.flow.Flow
+import dev.xero.paper.domain.repository.NoteRepository
 
-@Dao
-interface NoteDAO {
-	@Query("SELECT * FROM notes")
-	fun getAllNotes(): Flow<List<NoteDBEntity>>
+class UpdateNoteUseCase(
+	private val repository: NoteRepository
+) {
 
-	@Query("SELECT * FROM notes WHERE id = :id")
-	suspend fun getNoteById(id: Long): NoteDBEntity?
-
-	@Insert(onConflict = OnConflictStrategy.REPLACE)
-	suspend fun addNote(note: NoteDBEntity)
-
-	@Update
-	suspend fun updateNote(note: NoteDBEntity)
-
-	@Delete
-	suspend fun deleteNote(note: NoteDBEntity)
+	suspend operator fun invoke(note: NoteDBEntity) {
+		repository.updateNote(note)
+	}
 }

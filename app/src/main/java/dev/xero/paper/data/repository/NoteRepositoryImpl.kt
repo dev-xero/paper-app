@@ -36,6 +36,10 @@ class NoteRepositoryImpl @Inject constructor (
 		return dao.addNote(note)
 	}
 
+	override suspend fun updateNote(note: NoteDBEntity) {
+		return dao.updateNote(note)
+	}
+
 	override suspend fun deleteNote(note: NoteDBEntity) {
 		return dao.deleteNote(note)
 	}

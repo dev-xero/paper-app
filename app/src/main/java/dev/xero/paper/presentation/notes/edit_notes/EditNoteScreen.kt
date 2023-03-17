@@ -15,6 +15,7 @@
  */
 package dev.xero.paper.presentation.notes.edit_notes
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
@@ -25,6 +26,7 @@ import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.FloatingActionButtonDefaults
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
@@ -32,6 +34,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import dev.xero.paper.domain.model.NoteDBEntity
 import dev.xero.paper.presentation.notes.edit_notes.edit_note_components.BackButton
 import dev.xero.paper.presentation.notes.edit_notes.edit_note_components.InputBox
 import dev.xero.paper.presentation.notes.edit_notes.edit_note_components.SaveNoteButton
@@ -44,14 +47,23 @@ import dev.xero.paper.presentation.ui.theme.SurfaceDark
 fun EditNoteScreen(
 	modifier: Modifier = Modifier,
 	viewModel: EditNoteScreenViewModel,
+	noteContentState: NoteDBEntity?,
 	onBackButtonClicked: () -> Unit,
-	onSaveNoteButtonClicked: () -> Unit
+	onSaveNoteButtonClicked: () -> Unit,
+	onSetContent: () -> Unit
 ) {
 	val isDarkTheme = isSystemInDarkTheme()
 	val title = viewModel.title
 	val content = viewModel.content
 	val focusManager = LocalFocusManager.current
 	val focusRequester = remember { FocusRequester() }
+
+	LaunchedEffect(Unit) {
+		if (noteContentState != null) {
+			viewModel.getNote(noteContentState.id)
+			onSetContent()
+		}
+	}
 
 	Scaffold(
 		topBar = {
@@ -68,7 +80,7 @@ fun EditNoteScreen(
 				BackButton(
 					isDarkTheme = isDarkTheme,
 					modifier = Modifier.padding(
-						horizontal = 12.dp,
+						horizontal = 6.dp,
 						vertical = 8.dp
 					),
 					onButtonClick = onBackButtonClicked
@@ -78,12 +90,20 @@ fun EditNoteScreen(
 		floatingActionButton = {
 			FloatingActionButton(
 				onClick = {
-					viewModel.addNote()
+					if (viewModel.currentNote != null)
+						viewModel.updateNote()
+					else
+						viewModel.addNote()
 					onSaveNoteButtonClicked()
 				},
 				backgroundColor = Primary,
 				shape = RoundedCornerShape(4.dp),
-				elevation = FloatingActionButtonDefaults.elevation(0.dp),
+				elevation = FloatingActionButtonDefaults.elevation(
+					defaultElevation = 0.dp,
+					pressedElevation = 0.dp,
+					focusedElevation = 0.dp,
+					hoveredElevation = 0.dp
+				)
 			) {
 				SaveNoteButton(
 					isDarkTheme = isDarkTheme
@@ -92,7 +112,6 @@ fun EditNoteScreen(
 		}
 	) {padding ->
 		Column(
-			modifier = Modifier.padding(horizontal = 8.dp),
 			verticalArrangement = Arrangement.spacedBy(4.dp)
 		) {
 			InputBox(
@@ -110,6 +129,20 @@ fun EditNoteScreen(
 				),
 				focusRequester = focusRequester
 			)
+
+			Canvas(
+				modifier = Modifier
+					.size(
+						width = 100.dp,
+						height = 2.dp
+					)
+					.padding(start = 12.dp)
+			) {
+				drawRoundRect(
+					color = Primary,
+					size = size
+				)
+			}
 
 			InputBox(
 				inputType = InputType.Content,

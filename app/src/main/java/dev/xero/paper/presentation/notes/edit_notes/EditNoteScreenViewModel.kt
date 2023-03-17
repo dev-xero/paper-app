@@ -15,6 +15,7 @@
  */
 package dev.xero.paper.presentation.notes.edit_notes
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -28,17 +29,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EditNoteScreenViewModel @Inject constructor (
-	private val useCases: NoteUseCases
+	private val useCases: NoteUseCases,
 ) : ViewModel() {
+
 	var title: String by mutableStateOf("")
 	var content: String by mutableStateOf("")
+	var currentNote: NoteDBEntity? = null
 
 	fun updateTitle(value: String) {
 		title = value
-		val newNote = NoteDBEntity(
-			title = title,
-			content = content
-		)
 	}
 
 	fun updateContent(value: String) {
@@ -47,11 +46,33 @@ class EditNoteScreenViewModel @Inject constructor (
 
 	fun addNote() {
 		val newNote = NoteDBEntity(
-			title = title,
+			title = title.ifBlank { "Title" },
 			content = content
 		)
 		viewModelScope.launch {
 			useCases.addNoteUseCase(newNote)
+		}
+	}
+
+	fun getNote(id: Long) {
+		viewModelScope.launch {
+			currentNote = useCases.getNoteUseCase(id)
+			if (currentNote != null) {
+				title = currentNote!!.title
+				content = currentNote!!.content
+			}
+		}
+	}
+
+	fun updateNote() {
+		val updatedNote = NoteDBEntity(
+			id = currentNote!!.id,
+			title = title,
+			content = content
+		)
+		Log.d("APP", currentNote.toString())
+		viewModelScope.launch {
+			useCases.updateNoteUseCase(updatedNote)
 		}
 	}
 

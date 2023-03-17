@@ -27,5 +27,7 @@ interface NoteRepository {
 
 	suspend fun addNote(note: NoteDBEntity)
 
+	suspend fun updateNote(note: NoteDBEntity)
+
 	suspend fun deleteNote(note: NoteDBEntity)
 }
