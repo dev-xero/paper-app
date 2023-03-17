@@ -19,8 +19,10 @@ Manage all your important notes with ease
 - [x] Delete Notes
 
 ## ✅ Downloads
-[![Licence](https://img.shields.io/github/license/dev-xero/done-app?style=for-the-badge&color=3DDC84)](./LICENSE) [![GitHub release](https://img.shields.io/github/downloads/dev-xero/paper-app/total?color=3DDC84&label=Downloads&logo=android&style=for-the-badge)](hhttps://github.com/dev-xero/paper-app/releases/tag/v1.0)
-
+[![Licence](https://img.shields.io/github/license/dev-xero/done-app?style=for-the-badge&color=3DDC84)](./LICENSE)
+[![GitHub release](https://img.shields.io/github/downloads/dev-xero/paper-app/total?color=3DDC84&label=Downloads&logo=android&style=for-the-badge)](https://github.com/dev-xero/paper-app/releases/tag/v1.0) 
+<br />
+**Runs on Android 7.0 and up**
 <details>
   <summary> Installation Steps </summary>
   
