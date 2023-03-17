@@ -3,13 +3,31 @@
 ## Paper
 Paper — Note management done right.   
 Manage all your important notes with ease
+<p>
+  <img src="assets/preview - 1.png" width="200"/>
+  <img src="assets/preview - 2.png" width="200"/>
+  <img src="assets/preview - 3.png" width="200"/>
+  <img src="assets/preview - 4.png" width="200"/>
+</p>
 
-### Features
+## 📝Features
+- [x] Minimal and Aesthetic UI
 - [x] Light and Dark Theme
 - [x] Create and Edit Notes
-- [x] Delete Notes
+- [x] Search and Find Notes
 - [X] Save Notes for Later
-- [x] Minimal and Aesthetic UI
+- [x] Delete Notes
+
+## ✅ Downloads
+[![Licence](https://img.shields.io/github/license/dev-xero/done-app?style=for-the-badge&color=3DDC84)](./LICENSE) [![GitHub release](https://img.shields.io/github/downloads/dev-xero/done-app/total?color=3DDC84&label=Downloads&logo=android&style=for-the-badge)](https://github.com/dev-xero/done-app/releases/tag/v1.0.2)
+
+<details>
+  <summary> Steps </summary>
+  
+  1. [Download the app](https://github.com/dev-xero/done-app/releases/tag/v1.0.2) by clicking the green button or this link.
+  2. Locate the file and install, you might get a warning, that's because the app isn't from the playstore, but it's safe to install.
+  3. After installing, you should be able to use the app.
+</details>
 
 ### Donating
 <a href="https://www.buymeacoffee.com/xeroKun"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=xeroKun&button_colour=3DDC84&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff" /></a>
