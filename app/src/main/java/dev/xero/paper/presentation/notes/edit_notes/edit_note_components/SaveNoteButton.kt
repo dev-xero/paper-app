@@ -45,18 +45,12 @@ fun SaveNoteButton(
 			painter = painterResource(id = R.drawable.save_note_icon),
 			contentDescription = null,
 			modifier = modifier.size(24.dp),
-			tint = when(isDarkTheme) {
-				true -> SurfaceDark
-				else -> OnSurface
-			}
+			tint = if (isDarkTheme) SurfaceDark else OnSurface
 		)
 		Text(
 			text = stringResource(id = R.string.save_note),
 			style = MaterialTheme.typography.subtitle2,
-			color = when(isDarkTheme) {
-				true -> SurfaceDark
-				else -> OnSurface
-			},
+			color = if (isDarkTheme) SurfaceDark else OnSurface,
 			fontWeight = FontWeight.Bold,
 		)
 	}

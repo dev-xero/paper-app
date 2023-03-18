@@ -17,6 +17,7 @@ package dev.xero.paper.presentation.notes.notes_list.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -37,28 +38,30 @@ fun NoSearchResult(
 	Box(
 		contentAlignment = Alignment.Center
 	) {
-		Column(
+		LazyColumn(
 			modifier = modifier
 				.fillMaxSize()
 				.padding(24.dp),
 			verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
 			horizontalAlignment = Alignment.CenterHorizontally
 		) {
-			val resID = when(isDarkTheme) {
-				true -> R.drawable.document_blush_dark
-				else -> R.drawable.document_blush_light
+			item {
+				val resID = when(isDarkTheme) {
+					true -> R.drawable.document_blush_dark
+					else -> R.drawable.document_blush_light
+				}
+
+				Image(
+					painter = painterResource(id = resID),
+					contentDescription = "no results found"
+				)
+
+				Text(
+					text = "No Results for\n \"$query\"",
+					style = MaterialTheme.typography.h3,
+					textAlign = TextAlign.Center
+				)
 			}
-			
-			Image(
-				painter = painterResource(id = resID), 
-				contentDescription = "no results found"
-			)
-			
-			Text(
-				text = "No Results for\n \"$query\"",
-				style = MaterialTheme.typography.h3,
-				textAlign = TextAlign.Center
-			)
 		}
 	}
 }
