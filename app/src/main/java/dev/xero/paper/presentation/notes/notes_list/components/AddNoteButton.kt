@@ -25,7 +25,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -46,20 +45,14 @@ fun AddNoteButton(
 		Icon(
 			painter = painterResource(id = R.drawable.app_icon_light),
 			contentDescription = "add note",
-			tint = when(isDarkTheme) {
-				true -> SurfaceDark
-				else -> OnSurface
-	    },
+			tint = if (isDarkTheme) SurfaceDark else OnSurface,
 			modifier = Modifier.size(18.dp)
 		)
 
 		Text(
 			text = "Add Note",
 			style = MaterialTheme.typography.subtitle2,
-			color = when(isDarkTheme) {
-				true -> SurfaceDark
-				else -> Color(0xFFEBF7EE)
-			},
+			color = if (isDarkTheme) SurfaceDark else OnSurface,
 			fontWeight = FontWeight.Bold,
 		)
 	}
